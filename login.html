@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>نظام تسجيل الدخول</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500&display=swap');
+    
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: linear-gradient(135deg, #e6f7ff, #f0f9ff);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      animation: gradientShift 15s ease infinite;
+      background-size: 200% 200%;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .login-box {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      width: 320px;
+      text-align: center;
+      transition: transform 0.5s ease;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .login-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-box h2 {
+      margin-bottom: 30px;
+      color: #2c3e50;
+      font-weight: 500;
+      font-size: 24px;
+    }
+
+    .login-box input[type="text"],
+    .login-box input[type="password"] {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      outline: none;
+      font-family: 'Tajawal', sans-serif;
+      transition: all 0.3s ease;
+      background-color: rgba(245, 248, 250, 0.7);
+    }
+
+    .login-box input:focus {
+      border-color: #7fcdff;
+      box-shadow: 0 0 0 3px rgba(127, 205, 255, 0.2);
+    }
+
+    .login-box button {
+      background-color: #5d9cec;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      font-family: 'Tajawal', sans-serif;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .login-box button:hover {
+      background-color: #4a89dc;
+      transform: translateY(-2px);
+    }
+
+    .error {
+      color: #e74c3c;
+      margin-top: 15px;
+      display: none;
+      font-size: 14px;
+      padding: 8px;
+      background-color: rgba(231, 76, 60, 0.1);
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .leaf-decoration {
+      position: absolute;
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    .leaf-1 {
+      top: 10%;
+      left: 10%;
+      transform: rotate(15deg);
+    }
+
+    .leaf-2 {
+      bottom: 15%;
+      right: 10%;
+      transform: rotate(-20deg);
+    }
+
+    .welcome-text {
+      color: #7f8c8d;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+      20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+  </style>
+</head>
+<body>
+  <div id="loginPage">
+    <svg class="leaf-decoration leaf-1" width="100" height="100" viewBox="0 0 100 100">
+      <path fill="#27ae60" d="M50,0 C70,20 80,40 80,70 C80,90 60,100 50,100 C40,100 20,90 20,70 C20,40 30,20 50,0 Z"></path>
+    </svg>
+    
+    <svg class="leaf-decoration leaf-2" width="120" height="120" viewBox="0 0 100 100">
+      <path fill="#3498db" d="M50,0 C70,20 80,40 80,70 C80,90 60,100 50,100 C40,100 20,90 20,70 C20,40 30,20 50,0 Z"></path>
+    </svg>
+
+    <div class="login-box">
+      <h2>مرحباً بعودتك</h2>
+      <form id="loginForm">
+        <input type="text" id="username" placeholder="اسم المستخدم" required>
+        <input type="password" id="password" placeholder="كلمة المرور" required>
+        <button type="submit">تسجيل الدخول</button>
+        <div class="error" id="errorMsg">اسم المستخدم أو كلمة المرور غير صحيحة</div>
+      </form>
+      <p class="welcome-text">نظام إدارة المحتوى التعليمي</p>
+      <div style="margin-top: 15px; font-size: 12px; color: #7f8c8d;">
+          <p><strong>المديرين:</strong></p>
+          <p>naglaa saed / admin123</p>
+          <p>heba heseen / admin456</p>
+          <p><strong>المستخدمين:</strong></p>
+          <p>user1 / user1pass</p>
+          <p>user2 / user2pass</p>
+          <p>user3 / user3pass</p>
+          <p>... وهكذا حتى user98</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginForm = document.getElementById('loginForm');
+      const errorMsg = document.getElementById('errorMsg');
+
+      // عند تقديم نموذج تسجيل الدخول
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value.trim();
+        
+        errorMsg.style.display = 'none';
+        
+        // إرسال بيانات تسجيل الدخول إلى الخادم
+        fetch('/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: username,
+            password: password
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            // تخزين بيانات الجلسة
+            sessionStorage.setItem('currentUser', JSON.stringify({
+              username: username,
+              loginTime: new Date().toISOString()
+            }));
+            
+            // توجيه إلى الصفحة المخصصة
+            window.location.href = data.redirect;
+          } else {
+            // عرض رسالة الخطأ
+            errorMsg.textContent = data.error || 'اسم المستخدم أو كلمة المرور غير صحيحة';
+            errorMsg.style.display = 'block';
+            loginForm.style.animation = 'shake 0.5s';
+            setTimeout(() => loginForm.style.animation = '', 500);
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          errorMsg.textContent = 'حدث خطأ في الاتصال بالخادم';
+          errorMsg.style.display = 'block';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

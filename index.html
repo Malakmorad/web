@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مهارات التعلم الرقمي - الصف السادس | منصة تعليمية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2D5F8B;
+            --secondary-color: #F5A623;
+            --dark-color: #2C3E50;
+            --light-color: #F9F9F9;
+            --text-color: #333333;
+            --gray-color: #E0E0E0;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: "Tahoma", "Arial", sans-serif;
+            margin: 0;
+            background-image: url("https://tse4.mm.bing.net/th/id/OIP.hWmQVTCsTnFfmSAyDm3AJAHaDs?pid=Api&P=0&h=220");
+            background-size: cover;    
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        /* شريط التنقل العلوي */
+        .top-bar {
+            background: white;
+            padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 8px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #234d73;
+        }
+        
+        /* الهيرو */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), #3a7cb9);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 25px;
+        }
+        
+        /* المحتوى الرئيسي */
+        .main-content {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+        
+        .course-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .course-header {
+            background: var(--secondary-color);
+            color: white;
+            padding: 15px 25px;
+        }
+        
+        .course-body {
+            padding: 25px;
+        }
+        
+        .learning-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .type-card {
+            background: white;
+            border: 1px solid var(--gray-color);
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .type-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .type-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+        
+        .type-card h3 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .steps-section {
+            background: #f5f9fd;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        
+        .steps-section h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .steps-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            list-style: none;
+        }
+        
+        .step-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+        }
+        
+        /* الفوتر */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-column h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary-color);
+            padding-right: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* التصميم المتجاوب */
+        @media (max-width: 768px) {
+            .top-bar .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .learning-types {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- شريط التنقل العلوي -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="logo">
+                <img src="https://www.edraak.org/static/images/edraak-logo-ar.svg" alt="منصة تعليمية">
+            </div>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-primary">تسجيل الدخول</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- قسم الهيرو -->
+    <section class="hero">
+        <div class="container">
+            <h1>مهارات البحث الرقمي للصف السادس الابتدائي</h1>
+            <p>اكتشف عالم البحث الرقمي بطرق تفاعلية تناسب جميع أنماط التعلم</p>
+        </div>
+    </section>
+    
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
+        <div class="course-card">
+            <div class="course-header">
+                <h2>أنماط التعلم في البحث الرقمي</h2>
+            </div>
+            <div class="course-body">
+                <p>نقدم المحتوى التعليمي بطريقتين رئيسيتين لتتناسب مع جميع الطلاب:</p>
+                
+                <div class="learning-types">
+                    <div class="type-card">
+                        <div class="type-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>التعلم البصري</h3>
+                        <p>هذه الطريقة تناسب الذين يتعلمون أفضل عن طريق <strong>رؤية</strong> المعلومات:</p>
+                        <ul style="padding-right: 20px; margin-top: 10px;">
+                            <li>استخدام الصور والرسومات التوضيحية</li>
+                            <li>عرض المعلومات في جداول ومخططات</li>
+                            <li>الألوان لتمييز المعلومات المهمة</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="type-card">
+                        <div class="type-icon">
+                            <i class="fas fa-ear-listen"></i>
+                        </div>
+                        <h3>التعلم السمعي</h3>
+                        <p>هذه الطريقة تناسب الذين يتعلمون أفضل عن طريق <strong>الاستماع</strong>:</p>
+                        <ul style="padding-right: 20px; margin-top: 10px;">
+                            <li>شرح المسموع للخطوات</li>
+                            <li>استخدام الأغاني التعليمية</li>
+                            <li>المناقشات الصوتية</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="steps-section">
+            <h2>كيف تبحث على الإنترنت بفعالية؟</h2>
+            <p style="text-align: center; margin-bottom: 20px;">سواء كنت تفضل التعلم بالصور أو بالصوت، اتبع هذه الخطوات الأساسية:</p>
+            
+            <ul class="steps-list">
+                <li class="step-item">
+                    <div class="step-number">1</div>
+                    <h4>حدد ما تريد البحث عنه</h4>
+                    <p>اكتب فكرتك الرئيسية بوضوح</p>
+                </li>
+                <li class="step-item">
+                    <div class="step-number">2</div>
+                    <h4>استخدم كلمات بحث واضحة</h4>
+                    <p>اختر مصطلحات دقيقة ومناسبة</p>
+                </li>
+                <li class="step-item">
+                    <div class="step-number">3</div>
+                    <h4>اختر النتائج المناسبة</h4>
+                    <p>اقرأ العناوين والوصف قبل الدخول</p>
+                </li>
+                <li class="step-item">
+                    <div class="step-number">4</div>
+                    <h4>تحقق من صحة المعلومات</h4>
+                    <p>قارن بين عدة مصادر موثوقة</p>
+                </li>
+            </ul>
+        </div>
+    </main>
+    
+    <!-- الفوتر -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>عن المنصة</h3>
+                <p>منصة تعليمية تهدف إلى تطوير مهارات البحث الرقمي للطلاب وفق أحدث المعايير التربوية</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="#">الرئيسية</a></li>
+                    <li><a href="#">الدورات التعليمية</a></li>
+                    <li><a href="#">المسارات التعليمية</a></li>
+                    <li><a href="#">المساعدة</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>اتصل بنا</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> info@example.com</li>
+                    <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                    <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>© 2025 جميع الحقوق محفوظة - المنصة التعليمية</p>
+        </div>
+    </footer>
+</body>
+</html>

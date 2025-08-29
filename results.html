@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نتائج الطالب - نظام التقييم الرقمي</title>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .content {
+            padding: 30px;
+        }
+        .result-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+        .score {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            text-align: center;
+        }
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>نتائج الطالب</h1>
+            <p>عرض درجاتك في الامتحانات المختلفة</p>
+        </div>
+        
+        <div class="content">
+            <div class="result-card">
+                <h3>الرياضيات</h3>
+                <div class="score">85%</div>
+                <p>امتحان منتصف الفصل</p>
+            </div>
+            
+            <div class="result-card">
+                <h3>العلوم</h3>
+                <div class="score">92%</div>
+                <p>امتحان نهاية الفصل</p>
+            </div>
+            
+            <div class="result-card">
+                <h3>اللغة العربية</h3>
+                <div class="score">78%</div>
+                <p>امتحان منتصف الفصل</p>
+            </div>
+            
+            <div class="result-card">
+                <h3>التاريخ</h3>
+                <div class="score">88%</div>
+                <p>امتحان نهاية الفصل</p>
+            </div>
+            
+            <div class="result-card">
+                <h3>الإنجليزية</h3>
+                <div class="score">82%</div>
+                <p>امتحان منتصف الفصل</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="/" class="btn">العودة للصفحة الرئيسية</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

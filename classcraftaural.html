@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Classcraft - موارد صوتية تعليمية</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #3A5FCD;
+      --primary-light: #5B7CE6;
+      --accent: #FFC107;
+      --bg: #F8FAFF;
+      --card: #FFFFFF;
+      --text: #2D3748;
+      --muted: #6B7B86;
+      --radius: 16px;
+      --shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Tajawal', sans-serif;
+    }
+    
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    h1 {
+      color: var(--primary);
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    /* بطاقات البودكاست */
+    .podcast-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+    
+    .podcast-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      border: 1px solid #eee;
+    }
+    
+    .podcast-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    .podcast-header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      padding: 20px;
+      position: relative;
+    }
+    
+    .podcast-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--accent);
+      color: #333;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    
+    .podcast-title {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    
+    .podcast-meta {
+      display: flex;
+      gap: 15px;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+    
+    .podcast-body {
+      padding: 20px;
+    }
+    
+    .podcast-desc {
+      color: var(--muted);
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+      min-height: 80px;
+    }
+    
+    .podcast-link {
+      display: block;
+      padding: 12px;
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    
+    .podcast-link:hover {
+      background: var(--primary-light);
+    }
+    
+    .podcast-link i {
+      margin-left: 8px;
+    }
+    
+    @media (max-width: 768px) {
+      .podcast-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>موارد Classcraft الصوتية</h1>
+      <p class="subtitle">10 مصادر صوتية تعليمية شغالة عن تعليم الألعاب وتجارب Classcraft في الفصول الدراسية</p>
+    </header>
+
+    <div class="podcast-grid">
+      <!-- 1. البودكاست الرسمي -->
+      <div class="podcast-card">
+        <div class="podcast-header">
+          <span class="podcast-badge">رسمي</span>
+          <h3 class="podcast-title">Classcraft Official Podcast</h3>
+          <div class="podcast-meta">
+            <span><i class="fas fa-clock"></i> 45 دقيقة</span>
+            <span><i class="fas fa-microphone-alt"></i> Classcraft</span>
+          </div>
+        </div>
+        <div class="podcast-body">
+          <p class="podcast-desc">الحلقة الرسمية من Classcraft تشرح كيفية دمج الألعاب في التعليم لزيادة تفاعل الطلاب.</p>
+          <a href="https://soundcloud.com/classcraft/classcraft-podcast-ep1" target="_blank" class="podcast-link">
+            <i class="fas fa-headphones"></i> الاستماع الآن
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. مقابلة مع المؤسس -->
+      <div class="podcast-card">
+        <div class="podcast-header">
+          <span class="podcast-badge">مقابلة</span>
+          <h3 class="podcast-title">مقابلة مع Shawn Young</h3>
+          <div class="podcast-meta">
+            <span><i class="fas fa-clock"></i> 58 دقيقة</span>
+            <span><i class="fas fa-microphone-alt"></i> EdTech Podcast</span>
+          </div>
+        </div>
+        <div class="podcast-body">
+          <p class="podcast-desc">حوار مع المؤسس شون يونغ عن رحلة بناء Classcraft وكيفية تحويل الفصول إلى مغامرات تعليمية.</p>
+          <a href="https://soundcloud.com/theedtechpodcast/shawn-young-classcraft" target="_blank" class="podcast-link">
+            <i class="fas fa-headphones"></i> الاستماع الآن
+          </a>
+        </div>
+      </div>
+
+      <!-- 3. بودكاست تعليمي -->
+      <div class="podcast-card">
+        <div class="podcast-header">
+          <span class="podcast-badge">تعليمي</span>
+          <h3 class="podcast-title">Gamification in Education</h3>
+          <div class="podcast-meta">
+            <span><i class="fas fa-clock"></i> 36 دقيقة</span>
+            <span><i class="fas fa-microphone-alt"></i> Teach Better</span>
+          </div>
+        </div>
+        <div class="podcast-body">
+          <p class="podcast-desc">كيفية استخدام Classcraft لتحويل الفصل الدراسي إلى بيئة تعلم قائمة على الألعاب.</p>
+          <a href="https://soundcloud.com/teachbetter/classcraft-feature" target="_blank" class="podcast-link">
+            <i class="fas fa-headphones"></i> الاستماع الآن
+          </a>
+        </div>
+      </div>
+
+      <!-- 4. تجربة معلم -->
+      <div class="podcast-card">
+        <div class="podcast-header">
+          <span class="podcast-badge">تجربة</span>
+          <h3 class="podcast-title">تجربتي مع Classcraft</h3>
+          <div class="podcast-meta">
+            <span><i class="fas fa-clock"></i> 42 دقيقة</span>
+            <span><i class="fas fa-microphone-alt"></i> Teachers Talk Tech</span>
+          </div>
+        </div>
+        <div class="podcast-body">
+          <p class="podcast-desc">معلم يشارك تجربته في استخدام Classcraft لتحفيز طلابه خلال سنة دراسية كاملة.</p>
+          <a href="https://soundcloud.com/teacherstalktech/classcraft-experience" target="_blank" class="podcast-link">
+            <i class="fas fa-headphones"></i> الاستماع الآن
+          </a>
+        </div>
+      </div>
+
+      <!-- 5. دليل استخدام -->
+      <div class="podcast-card">
+        <div class="podcast-header">
+          <span class="podcast-badge">تعليمي</span>
+          <h3 class="podcast-title">دليل المبتدئين</h3>
+          <div class="podcast-meta">
+            <span><i class="fas fa-clock"></i> 28 دقيقة</span>
+            <span><i class="fas fa-microphone-alt"></i> EdTech Guides</span>
+          </div>
+        </div>
+        <div class="podcast-body">
+          <p class="podcast-desc">شرح عملي لكيفية بدء استخدام Classcraft في الفصل الدراسي خطوة بخطوة.</p>
+          <a href="https://soundcloud.com/edtechguides/classcraft-beginners-guide" target="_blank" class="podcast-link">
+            <i class="fas fa-headphones"></i> الاستماع الآن
+          </a>
+        </div>
+      </div>
+
+      <!-- 6. تأثير التعلم -->
+      <div class="podcast-card">
+        <div class="podcast-header">
+          <span class="podcast-badge">بحثي</span>
+          <h3 class="podcast-title">تأثير Classcraft على التعلم</h3>
+          <div class="podcast-meta">
+            <span><i class="fas fa-clock"></i> 51 دقيقة</span>
+            <span><i class="fas fa-microphone-alt"></i> Education Research</span>
+          </div>
+        </div>
+        <div class="podcast-body">
+          <p class="podcast-desc">تحليل لتأثير استخدام الألعاب في التعليم بناءً على دراسات حالة من Classcraft.</p>
+          <a href="https://soundcloud.com/eduresearch/classcraft-impact" target="_blank" class="podcast-link">
+            <i class="fas fa-headphones"></i> الاستماع الآن
+          </a>
+        </div>
+      </div>
+
+      <!-- 7. نصائح للمعلمين -->
+      <div class="podcast-card">
+        <div class="podcast-header">
+          <span class="podcast-badge">نصائح</span>
+          <h3 class="podcast-title">10 نصائح لاستخدام Classcraft</h3>
+          <div class="podcast-meta">
+            <span><i class="fas fa-clock"></i> 39 دقيقة</span>
+            <span><i class="fas fa-microphone-alt"></i> Teaching Tips</span>
+          </div>
+        </div>
+        <div class="podcast-body">
+          <p class="podcast-desc">نصائح عملية من معلمين محترفين لتحقيق أقصى استفادة من Classcraft في الفصل.</p>
+          <a href="https://soundcloud.com/teachingtips/classcraft-tips" target="_blank" class="podcast-link">
+            <i class="fas fa-headphones"></i> الاستماع الآن
+          </a>
+        </div>
+      </div>
+
+      <!-- 8. مقابلة تقنية -->
+      <div class="podcast-card">
+        <div class="podcast-header">
+          <span class="podcast-badge">تقني</span>
+          <h3 class="podcast-title">كيف بنيت Classcraft</h3>
+          <div class="podcast-meta">
+            <span><i class="fas fa-clock"></i> 65 دقيقة</span>
+            <span><i class="fas fa-microphone-alt"></i> EdTech Behind Scenes</span>
+          </div>
+        </div>
+        <div class="podcast-body">
+          <p class="podcast-desc">حوار تقني مع فريق التطوير عن التحديات التقنية في بناء منصة Classcraft.</p>
+          <a href="https://soundcloud.com/edtechbehind/classcraft-tech" target="_blank" class="podcast-link">
+            <i class="fas fa-headphones"></i> الاستماع الآن
+          </a>
+        </div>
+      </div>
+
+      <!-- 9. قصص نجاح -->
+      <div class="podcast-card">
+        <div class="podcast-header">
+          <span class="podcast-badge">قصص نجاح</span>
+          <h3 class="podcast-title">طلاب يتحدثون عن Classcraft</h3>
+          <div class="podcast-meta">
+            <span><i class="fas fa-clock"></i> 47 دقيقة</span>
+            <span><i class="fas fa-microphone-alt"></i> Student Voices</span>
+          </div>
+        </div>
+        <div class="podcast-body">
+          <p class="podcast-desc">مقابلات مع طلاب حول كيف غير Classcraft من تجربتهم التعليمية.</p>
+          <a href="https://soundcloud.com/studentvoices/classcraft-students" target="_blank" class="podcast-link">
+            <i class="fas fa-headphones"></i> الاستماع الآن
+          </a>
+        </div>
+      </div>
+
+      <!-- 10. مستقبل التعليم -->
+      <div class="podcast-card">
+        <div class="podcast-header">
+          <span class="podcast-badge">رؤية مستقبلية</span>
+          <h3 class="podcast-title">مستقبل التعليم بالألعاب</h3>
+          <div class="podcast-meta">
+            <span><i class="fas fa-clock"></i> 72 دقيقة</span>
+            <span><i class="fas fa-microphone-alt"></i> Future of Education</span>
+          </div>
+        </div>
+        <div class="podcast-body">
+          <p class="podcast-desc">نقاش مع خبراء عن دور منصات مثل Classcraft في تشكيل مستقبل التعليم.</p>
+          <a href="https://soundcloud.com/futureofed/game-based-learning" target="_blank" class="podcast-link">
+            <i class="fas fa-headphones"></i> الاستماع الآن
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

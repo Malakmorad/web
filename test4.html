@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استبيان أنماط التعلم VARK</title>
+    <style>
+        :root {
+            --visual-color: #e74c3c;
+            --aural-color: #3498db;
+            --read-write-color: #f39c12;
+            --kinesthetic-color: #2ecc71;
+            --primary-bg: #f8f9fa;
+            --secondary-bg: #ffffff;
+            --text-color: #2c3e50;
+            --border-color: #dfe6e9;
+        }
+        
+        body {
+            font-family: 'Tajawal', 'Arial', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px;
+            background: var(--secondary-bg);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            color: var(--visual-color);
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--aural-color);
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .intro {
+            background: linear-gradient(135deg, #e8f4fc 0%, #f0f7ff 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border-right: 5px solid var(--aural-color);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .question {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--secondary-bg);
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .question:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .question h3 {
+            color: var(--text-color);
+            margin-top: 0;
+            font-size: 1.3rem;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        
+        .options {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .option {
+            padding: 15px;
+            background: var(--secondary-bg);
+            border-radius: 8px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            background: #f8f9fa;
+            border-color: var(--aural-color);
+        }
+        
+        .option input {
+            margin-left: 10px;
+            transform: scale(1.3);
+            cursor: pointer;
+        }
+        
+        button {
+            display: block;
+            width: 250px;
+            padding: 15px;
+            margin: 40px auto;
+            background: linear-gradient(135deg, var(--visual-color) 0%, var(--aural-color) 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            font-weight: bold;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        .results {
+            display: none;
+            margin-top: 50px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4fc 100%);
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid var(--border-color);
+        }
+        
+        .results h2 {
+            color: var(--visual-color);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+        
+        .result-types {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .result-type {
+            flex: 1;
+            min-width: 250px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .result-type:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .visual { border-top: 5px solid var(--visual-color); }
+        .aural { border-top: 5px solid var(--aural-color); }
+        
+        .result-type h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+        
+        .score {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .visual .score { color: var(--visual-color); }
+        .aural .score { color: var(--aural-color); }
+        
+        .learning-tips {
+            margin-top: 40px;
+            text-align: right;
+        }
+        
+        .learning-tips h3 {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .tip {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .tip h4 {
+            margin-top: 0;
+            color: var(--text-color);
+            font-size: 1.2rem;
+        }
+        
+        .tip ul {
+            padding-right: 20px;
+        }
+        
+        .tip li {
+            margin-bottom: 10px;
+        }
+        
+        .visual-tip { border-right: 4px solid var(--visual-color); }
+        .aural-tip { border-right: 4px solid var(--aural-color); }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 20px;
+            }
+            
+            .options {
+                grid-template-columns: 1fr;
+            }
+            
+            .result-types {
+                flex-direction: column;
+            }
+            
+            .result-type {
+                min-width: 100%;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>استبيان أنماط التعلم VARK</h1>
+        
+        <div class="intro">
+            <p>يهدف هذا الاستبيان إلى مساعدتك على تحديد أسلوبك المفضل في التعلم. اختر الإجابة (أو الإجابات) التي تعبر عن تفضيلك الأفضل في التعلم لكل سؤال.</p>
+            <p><strong>ملاحظة:</strong> يمكنك اختيار أكثر من إجابة واحدة إذا شعرت أن إجابة واحدة لا تعكس تفضيلك بشكل كامل.</p>
+        </div>
+        
+        <form id="varkForm">
+            <!-- Question 1 -->
+            <div class="question">
+                <h3>1. أنت تخطط رحلة لمجموعة وتريد أن تعرف رأيهم حول المخطط. يمكنك أن:</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="q1" value="V"> أ. تستخدم خريطة أو موقع إنترنت لتريهم الأماكن</label>
+                    <label class="option"><input type="checkbox" name="q1" value="A"> ب. تتصل بهم هاتفيًا أو ترسل رسالة قصيرة أو بريدًا إلكترونيًا</label>
+                    <label class="option"><input type="checkbox" name="q1" value="V"> ج. تعطيهم نسخة من دليل الرحلة</label>
+                    <label class="option"><input type="checkbox" name="q1" value="A"> د. تصف النقاط المهمة للمخطط</label>
+                </div>
+            </div>
+            
+            <!-- Question 2 -->
+            <div class="question">
+                <h3>2. أنت بصدد تحضير وليمة مميزة لعائلتك. يمكنك أن:</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="q2" value="V"> أ. تنظر في كتاب الطبخ لتأخذ أفكارًا من الصور</label>
+                    <label class="option"><input type="checkbox" name="q2" value="A"> ب. تسأل الأصدقاء لتزويدك باقتراحات</label>
+                    <label class="option"><input type="checkbox" name="q2" value="V"> ج. تستخدم كتاب فن الطبخ حيث تعلم أن هناك وصفات جيدة</label>
+                    <label class="option"><input type="checkbox" name="q2" value="A"> د. تطبخ شيئًا تعرفه دون الحاجة إلى تعليمات</label>
+                </div>
+            </div>
+            
+            <!-- Question 3 -->
+            <div class="question">
+                <h3>3. أنت تريد تعلم برنامج أو مهارة أو لعبة جديدة على الحاسوب. يمكنك أن:</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="q3" value="V"> أ. تتبع الرسم الموجود في الكتاب المرفق به</label>
+                    <label class="option"><input type="checkbox" name="q3" value="A"> ب. تتحدث مع أناس يعرفون هذا البرنامج</label>
+                    <label class="option"><input type="checkbox" name="q3" value="V"> ج. تقرأ التعليمات المكتوبة المرفقة بالبرنامج</label>
+                    <label class="option"><input type="checkbox" name="q3" value="A"> د. تستخدم لوحة المفاتيح وتجرب بنفسك</label>
+                </div>
+            </div>
+            
+            <!-- Question 4 -->
+            <div class="question">
+                <h3>4. بعيدًا عن السعر، ما الذي يؤثر فيك أكثر عند شراء كتاب واقعي؟</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="q4" value="V"> أ. الشكل الخارجي للكتاب</label>
+                    <label class="option"><input type="checkbox" name="q4" value="A"> ب. رفيق تحدث عنه وأوصى به</label>
+                    <label class="option"><input type="checkbox" name="q4" value="V"> ج. قراءة سريعة لأجزاء منه</label>
+                    <label class="option"><input type="checkbox" name="q4" value="A"> د. يحتوي على قصص حياتية واقعية، وتجارب وأمثلة</label>
+                </div>
+            </div>
+            
+            <!-- Question 5 -->
+            <div class="question">
+                <h3>5. مجموعة من السياح تود التعرف على المنتزهات ومحميات الحياة البرية في منطقتك. يمكنك أن:</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="q5" value="V"> أ. تريهم صورًا على شبكة الإنترنت أو رسومًا من كتاب الصور</label>
+                    <label class="option"><input type="checkbox" name="q5" value="A"> ب. تتحدث عنها أو تنسق لتحضير من يلقي عليهم كلمة حول الموضوع</label>
+                    <label class="option"><input type="checkbox" name="q5" value="V"> ج. تعطيهم كتابًا أو كتيبات عن المنتزهات ومحميات الحياة البرية</label>
+                    <label class="option"><input type="checkbox" name="q5" value="A"> د. تأخذهم إلى المنتزهات ومحميات الحياة البرية وتسير معهم</label>
+                </div>
+            </div>
+            
+            <!-- Question 6 -->
+            <div class="question">
+                <h3>6. عليك اختيار طعام في مطعم أو مقهى. يمكنك أن:</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="q6" value="V"> أ. تتطلع إلى ما يأكله الآخرون أو تنظر إلى صور الطعام</label>
+                    <label class="option"><input type="checkbox" name="q6" value="A"> ب. تستمع إلى النادل أو تسأل أصدقاءك لطرح اختيارات</label>
+                    <label class="option"><input type="checkbox" name="q6" value="V"> ج. تختار من الوصف الموجود في قائمة الوجبات</label>
+                    <label class="option"><input type="checkbox" name="q6" value="A"> د. تختار شيئًا أكلته سابقًا</label>
+                </div>
+            </div>
+            
+            <!-- Question 7 -->
+            <div class="question">
+                <h3>7. عليك إلقاء كلمة مهمة في مؤتمر أو مناسبة خاصة. يمكنك أن:</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="q7" value="V"> أ. تستخدم رسومًا بيانية وصورًا تساعدك على شرح الأشياء</label>
+                    <label class="option"><input type="checkbox" name="q7" value="A"> ب. تجمع العديد من الأمثلة والقصص لتجعل كلامك واقعيًا وعمليًا</label>
+                    <label class="option"><input type="checkbox" name="q7" value="V"> ج. تكتب الكلمة وتتعلمها عن طريق قراءتها عدة مرات</label>
+                    <label class="option"><input type="checkbox" name="q7" value="A"> د. تكتب رؤوس أقلام عن الموضوع وتتدرب على قولها مرة بعد أخرى</label>
+                </div>
+            </div>
+            
+            <!-- Question 8 -->
+            <div class="question">
+                <h3>8. من تفضل المدرس أو المقدم الذي يستخدم:</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="q8" value="V"> أ. رسومًا بيانية، مخططات، خرائط بيانية، وصورًا</label>
+                    <label class="option"><input type="checkbox" name="q8" value="A"> ب. أسئلة وأجوبة، حديثًا، مناقشة جماعية، أو استضافة متحدث</label>
+                    <label class="option"><input type="checkbox" name="q8" value="V"> ج. أوراق عمل، كتب، أو قراءات</label>
+                    <label class="option"><input type="checkbox" name="q8" value="A"> د. عروضًا ونماذج، أو جلسات تطبيقية</label>
+                </div>
+            </div>
+            
+            <!-- Question 9 -->
+            <div class="question">
+                <h3>9. عندك مشكلة في ركبتك، فأنت تفضل الطبيب الذي:</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="q9" value="V"> أ. يريك رسمًا عن المشكلة</label>
+                    <label class="option"><input type="checkbox" name="q9" value="A"> ب. يصف لك ما المشكلة</label>
+                    <label class="option"><input type="checkbox" name="q9" value="V"> ج. يعطيك اسم موقع على الإنترنت أو شيئًا لتقرأه عن الموضوع</label>
+                    <label class="option"><input type="checkbox" name="q9" value="A"> د. يستخدم نموذجًا بلاستيكيًا ليشرح لك المشكلة</label>
+                </div>
+            </div>
+            
+            <!-- Question 10 -->
+            <div class="question">
+                <h3>10. أنت غير متأكد ما إذا كانت تهجئة الكلمة "dependent" أو "dependant". يمكنك أن:</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="q10" value="V"> أ. تتخيل الكلمتين في عقلك وتختار حسب الشكل الذي تراه</label>
+                    <label class="option"><input type="checkbox" name="q10" value="A"> ب. تفكر بصوت كل كلمة وتختار واحدة</label>
+                    <label class="option"><input type="checkbox" name="q10" value="V"> ج. تبحث عنها في القاموس</label>
+                    <label class="option"><input type="checkbox" name="q10" value="A"> د. تكتب الكلمتين على الورقة وتختار واحدة</label>
+                </div>
+            </div>
+            
+            <!-- Question 11 -->
+            <div class="question">
+                <h3>11. أنهيت اختبارًا أو منافسة وتريد معرفة خلفية عن ذلك. تفضل أن تكون الخلفية:</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="q11" value="V"> أ. باستخدام رسوم بيانية وصور عن ما أنجزته</label>
+                    <label class="option"><input type="checkbox" name="q11" value="A"> ب. من شخص يتحدث معك عنها</label>
+                    <label class="option"><input type="checkbox" name="q11" value="V"> ج. باستخدام وصف خطي عن نتائجك</label>
+                    <label class="option"><input type="checkbox" name="q11" value="A"> د. باستخدام أمثلة مما فعلته</label>
+                </div>
+            </div>
+            
+            <!-- Question 12 -->
+            <div class="question">
+                <h3>12. تذكر مرة تعلمت فيها شيئًا جديدًا (غير مهارات جسدية مثل ركوب الدراجة). تعلمت أفضل بواسطة:</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="q12" value="V"> أ. مشاهدة عرض</label>
+                    <label class="option"><input type="checkbox" name="q12" value="A"> ب. الاستماع إلى شرح أحدهم وطرح أسئلة</label>
+                    <label class="option"><input type="checkbox" name="q12" value="V"> ج. تعليمات مكتوبة، مثل دليل الاستعمال أو كتاب</label>
+                    <label class="option"><input type="checkbox" name="q12" value="A"> د. رسوم بيانية ومساعدات مرئية</label>
+                </div>
+            </div>
+            
+            <!-- Question 13 -->
+            <div class="question">
+                <h3>13. أنت بصدد شراء آلة تصوير رقمية أو هاتف خلوي، بعيدًا عن السعر، ما الذي يؤثر على قرارك؟</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="q13" value="V"> أ. تصميمه الحديث ومظهره الجيد</label>
+                    <label class="option"><input type="checkbox" name="q13" value="A"> ب. البائع يخبرك عن مواصفاته</label>
+                    <label class="option"><input type="checkbox" name="q13" value="V"> ج. قراءة تفاصيل عن مواصفاته</label>
+                    <label class="option"><input type="checkbox" name="q13" value="A"> د. تجربته واختباره</label>
+                </div>
+            </div>
+            
+            <!-- Question 14 -->
+            <div class="question">
+                <h3>14. أنت تستخدم كتابًا أو موقعًا إلكترونيًا لتتعلم كيف تأخذ صورًا بآلة تصويرك الرقمية. تفضل أن يكون لديك:</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="q14" value="V"> أ. الرسوم البيانية التي تظهر آلة التصوير وكيفية عمل كل جزء منها</label>
+                    <label class="option"><input type="checkbox" name="q14" value="A"> ب. الفرصة لطرح الأسئلة والتحدث عن آلة التصوير ومواصفاتها</label>
+                    <label class="option"><input type="checkbox" name="q14" value="V"> ج. تعليمات مكتوبة وواضحة واللوائح والنقاط المحددة عما يجب أن تفعله</label>
+                    <label class="option"><input type="checkbox" name="q14" value="A"> د. أمثلة كثيرة عن صور جيدة وأخرى رديئة والطريقة لتحسينها</label>
+                </div>
+            </div>
+            
+            <!-- Question 15 -->
+            <div class="question">
+                <h3>15. أنا أحب المواقع الإلكترونية التي تحتوي على:</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="q15" value="V"> أ. تصاميم شيقة ومواصفات مرئية، من رسومات وألوان وغيرها</label>
+                    <label class="option"><input type="checkbox" name="q15" value="A"> ب. قنوات سمعية، حيث يمكنني الاستماع إلى الموسيقى، برامج الإذاعة، والمقابلات</label>
+                    <label class="option"><input type="checkbox" name="q15" value="V"> ج. تفسيرات ولوائح وصفية مكتوبة وشيقة</label>
+                    <label class="option"><input type="checkbox" name="q15" value="A"> د. أشياء يمكن أن أضغط عليها وأنقلها وأجربها</label>
+                </div>
+            </div>
+            
+            <!-- Question 16 -->
+            <div class="question">
+                <h3>16. أنت تساعد شخصًا يريد الوصول إلى المطار أو وسط المدينة أو محطة السكة الحديدية. يمكنك أن:</h3>
+                <div class="options">
+                    <label class="option"><input type="checkbox" name="q16" value="V"> أ. ترسم أو تعطيه خريطة</label>
+                    <label class="option"><input type="checkbox" name="q16" value="A"> ب. تخبره عن الاتجاهات</label>
+                    <label class="option"><input type="checkbox" name="q16" value="V"> ج. تكتب له الاتجاهات (بدون خريطة)</label>
+                    <label class="option"><input type="checkbox" name="q16" value="A"> د. تذهب معه</label>
+                </div>
+            </div>
+            
+            <button type="button" onclick="calculateResults()">احسب نتائجي</button>
+        </form>
+        
+        <div id="results" class="results">
+            <h2>نتيجة استبيان أنماط التعلم</h2>
+            <p>بناءً على إجاباتك، إليك تفضيلاتك في أنماط التعلم:</p>
+            
+            <div class="result-types">
+                <div id="visualResult" class="result-type visual">
+                    <h3>بصري (Visual - V)</h3>
+                    <div class="score"><span id="visualScore">0</span></div>
+                    <p>تفضل التعلم من خلال الصور والرسوم البيانية</p>
+                </div>
+                
+                <div id="auralResult" class="result-type aural">
+                    <h3>سمعي (Aural - A)</h3>
+                    <div class="score"><span id="auralScore">0</span></div>
+                    <p>تفضل التعلم من خلال الاستماع والمناقشات</p>
+                </div>
+            </div>
+            
+            <div id="learningTips" class="learning-tips">
+                <h3>نصائح تعلم حسب أسلوبك:</h3>
+                <div id="tipsContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateResults() {
+            // Initialize scores
+            let scores = { V: 0, A: 0 };
+            
+            // Calculate scores for each question
+            for (let i = 1; i <= 16; i++) {
+                const checkboxes = document.querySelectorAll(`input[name="q${i}"]:checked`);
+                checkboxes.forEach(checkbox => {
+                    scores[checkbox.value]++;
+                });
+            }
+            
+            // Display scores
+            document.getElementById('visualScore').textContent = scores.V;
+            document.getElementById('auralScore').textContent = scores.A;
+            
+            // Show learning tips based on dominant style
+            showLearningTips(scores);
+            
+            // Show results section
+            document.getElementById('results').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function showLearningTips(scores) {
+            const tipsContent = document.getElementById('tipsContent');
+            let tips = '';
+            
+            // Find dominant learning style(s)
+            const maxScore = Math.max(scores.V, scores.A);
+            const dominantStyles = [];
+            
+            if (scores.V === maxScore) dominantStyles.push('بصري');
+            if (scores.A === maxScore) dominantStyles.push('سمعي');
+            
+            if (dominantStyles.length === 1) {
+                tips += `<p>أسلوب تعلمك الأساسي هو <strong>${dominantStyles[0]}</strong>. إليك بعض النصائح:</p>`;
+            } else {
+                tips += `<p>لديك تفضيل متساوٍ لأنماط تعلم متعددة: <strong>${dominantStyles.join('، ')}</strong>. إليك بعض النصائح:</p>`;
+            } }
+            
+          function showLearningTips(scores) {
+    const tipsContent = document.getElementById('tipsContent');
+    let tips = '';
+
+    // Visual tips
+    if (scores.V > scores.A) {
+        tips = `
+        <div class="tip visual-tip">
+            <h4>أنت متعلم بصري (Visual Learner)</h4>
+            <p>إليك أفضل طرق التعلم المناسبة لك:</p>
+            <ul>
+                <li>استخدم الرسوم البيانية والخرائط الذهنية لتلخيص المعلومات</li>
+                <li>استعن بالألوان المختلفة لتنظيم وتصنيف المفاهيم</li>
+                <li>شاهد الفيديوهات التعليمية والشرح المرئي</li>
+                <li>ارسم مخططات ورسومات لتوضيح العلاقات بين الأفكار</li>
+                <li>استخدم البطاقات التعليمية المصورة</li>
+                <li>قم بتمثيل المعلومات في شكل جداول أو رسوم بيانية</li>
+            </ul>
+          
+        </div>`;
+    } 
+    // Aural tips
+    else if (scores.A > scores.V) {
+        tips = `
+        <div class="tip aural-tip">
+            <h4>أنت متعلم سمعي (Aural Learner)</h4>
+            <p>إليك أفضل طرق التعلم المناسبة لك:</p>
+            <ul>
+                <li>استمع إلى التسجيلات الصوتية للمحاضرات والدروس</li>
+                <li>ناقش المعلومات مع الزملاء أو المعلمين</li>
+                <li>سجل ملاحظاتك صوتيًا واستمع إليها لاحقًا</li>
+                <li>استخدم الأغاني أو القوافي أو الإيقاعات لتذكر المعلومات</li>
+                <li>اقرأ النصوص بصوت عالٍ لنفسك</li>
+                <li>شارك في المناقشات الجماعية وتبادل الأفكار</li>
+            </ul>
+           
+        </div>`;
+    }
+    // إذا كانت النتائج متساوية
+    else {
+        tips = `
+        <div class="tip" style="border-right: 4px solid var(--read-write-color);">
+            <h4>لديك تفضيل متوازن بين التعلم البصري والسمعي</h4>
+            <p>يمكنك الاستفادة من كلا الأسلوبين:</p>
+            <ul>
+                <li>جرب استخدام الرسوم البيانية مع الشرح الصوتي</li>
+                <li>شاهد الفيديوهات التعليمية ثم ناقشها مع الآخرين</li>
+                <li>استخدم التسجيلات الصوتية مع الخرائط الذهنية</li>
+                <li>اقرأ الملاحظات بصوت عالٍ أثناء كتابتها</li>
+            </ul>
+            
+        </div>`;
+    }
+
+    tipsContent.innerHTML = tips;
+}
+
+tipsContent.innerHTML = tips;
+        function calculateResults() {
+    // Initialize scores
+    let scores = { V: 0, A: 0 };
+    
+    // Calculate scores for each question
+    for (let i = 1; i <= 16; i++) {
+        const checkboxes = document.querySelectorAll(`input[name="q${i}"]:checked`);
+        checkboxes.forEach(checkbox => {
+            scores[checkbox.value]++;
+        });
+    }
+    
+    // Display scores
+    document.getElementById('visualScore').textContent = scores.V;
+    document.getElementById('auralScore').textContent = scores.A;
+    
+    // Show learning tips based on dominant style
+    showLearningTips(scores);
+    
+    // Show results section
+    document.getElementById('results').style.display = 'block';
+    
+    // Scroll to results
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+
+    // إنشاء زر التوجيه حسب النتيجة
+    const redirectButtonContainer = document.createElement('div');
+    redirectButtonContainer.style.textAlign = 'center';
+    redirectButtonContainer.style.marginTop = '20px';
+
+    if (scores.V > scores.A) {
+        // إذا كان المستخدم بصريًا
+        const visualButton = document.createElement('button');
+        visualButton.textContent = 'انتقل إلى صفحه التعلم البصري';
+        visualButton.style.backgroundColor = 'var(--visual-color)';
+        visualButton.onclick = function() {
+            window.location.href = "b_visual.html";
+        };
+        redirectButtonContainer.appendChild(visualButton);
+    } 
+    else if (scores.A > scores.V) {
+        // إذا كان المستخدم سمعيًا
+        const auralButton = document.createElement('button');
+        auralButton.textContent = 'انتقل إلى صفحه التعلم السمعي';
+        auralButton.style.backgroundColor = 'var(--aural-color)';
+        auralButton.onclick = function() {
+            window.location.href = "a_aural.html";
+        };
+        redirectButtonContainer.appendChild(auralButton);
+    }
+    else {
+        // إذا كانت النتائج متساوية
+        const equalButton = document.createElement('button');
+        equalButton.textContent = 'عرض نصائح عامة';
+        equalButton.style.backgroundColor = 'var(--read-write-color)';
+        equalButton.onclick = function() {
+            alert("لديك تفضيل متساوٍ بين البصري والسمعي، يمكنك استكشاف كلا الصفحتين!");
+        };
+        redirectButtonContainer.appendChild(equalButton);
+    }
+
+    // إضافة الأزرار إلى قسم النتائج
+    document.getElementById('results').appendChild(redirectButtonContainer);
+}
+function saveResults(examName, studentName, score) {
+  // جلب النتائج الحالية من LocalStorage أو إنشاء مصفوفة جديدة
+  const allResults = JSON.parse(localStorage.getItem('examResults')) || [];
+  
+  // إضافة النتيجة الجديدة
+  allResults.push({
+    exam: examName, // اسم الاختبار (Exam1 أو Exam2)
+    student: studentName,
+    score: score,
+    date: new Date().toLocaleDateString('ar-EG') // تاريخ اليوم
+  });
+  
+  // حفظ النتائج في LocalStorage
+  localStorage.setItem('examResults', JSON.stringify(allResults));
+  
+  // توجيه الطالب إلى صفحة النتائج
+  window.location.href = "result.html";
+}
+
+
+</script>
+<script>
+  async function saveResults(examName, score) {
+    // جلب بيانات الطالب من localStorage
+    const student = JSON.parse(localStorage.getItem('currentUser'));
+    
+    // إذا كنت تستخدم Firebase:
+    await db.collection("results").add({
+      exam: examName,
+      student: student.name,
+      score: score,
+      date: new Date()
+    });
+
+    // إذا كنت تستخدم localStorage فقط:
+    const localResults = JSON.parse(localStorage.getItem('examResults')) || [];
+    localResults.push({
+      exam: examName,
+      student: student.name,
+      score: score,
+      date: new Date().toISOString()
+    });
+    localStorage.setItem('examResults', JSON.stringify(localResults));
+    
+    alert("تم حفظ النتائج بنجاح!");
+    window.location.href = "result.html";
+  }
+</script>
+<!-- أضف هذا في header جميع الصفحات -->
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // الإعدادات - ضعها في جميع الصفحات
+  const firebaseConfig = {
+    apiKey: "AIzaSyXXXX...",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_BUCKET.appspot.com",
+    messagingSenderId: "123456789",
+    appId: "1:123456789:web:abcdef123456"
+  };
+  
+  // التهيئة - ضعها مرة واحدة في كل صفحة
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+  const db = firebase.firestore();
+</script>
+<button onclick="submitExam()">إنهاء الامتحان</button>
+
+<script>
+function submitExam() {
+    // Get current scores
+    const visualScore = parseInt(document.getElementById('visualScore').textContent) || 0;
+    const auralScore = parseInt(document.getElementById('auralScore').textContent) || 0;
+    
+    if (visualScore === 0 && auralScore === 0) {
+        alert("الرجاء الإجابة على الأسئلة أولاً قبل الإرسال");
+        return;
+    }
+    
+    const studentName = prompt("من فضلك أدخل اسمك:") || "غير معروف";
+    const totalScore = visualScore + auralScore;
+    const maxPossibleScore = 20; // Assuming 20 questions total
+    const percentage = Math.round((totalScore / maxPossibleScore) * 100);
+    
+    // Determine dominant learning style
+    let dominantStyle = "متوازن";
+    if (visualScore > auralScore) {
+        dominantStyle = "بصري";
+    } else if (auralScore > visualScore) {
+        dominantStyle = "سمعي";
+    }
+    
+    const resultData = {
+        student_name: studentName,
+        test_type: "Learning Style Assessment",
+        total_score: totalScore,
+        percentage: percentage,
+        grade: getGrade(percentage),
+        learning_style: dominantStyle,
+        visual_score: visualScore,
+        aural_score: auralScore,
+        submission_date: new Date().toISOString()
+    };
+
+    fetch("/submit_exam", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(resultData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert(`تم حفظ النتائج بنجاح!
+            
+الاسم: ${studentName}
+النمط المهيمن: ${dominantStyle}
+الدرجة البصرية: ${visualScore}
+الدرجة السمعية: ${auralScore}
+النسبة المئوية: ${percentage}%
+التقدير: ${getGrade(percentage)}`);
+        } else {
+            alert("حدث خطأ في حفظ النتائج");
+        }
+    })
+    .catch(error => {
+        console.error("Error saving results:", error);
+        alert("حدث خطأ في حفظ النتائج");
+    });
+}
+
+function getGrade(percentage) {
+    if (percentage >= 90) return "ممتاز";
+    if (percentage >= 80) return "جيد جداً";
+    if (percentage >= 70) return "جيد";
+    if (percentage >= 60) return "مقبول";
+    return "ضعيف";
+}
+</script>
+
+</body>
+</html>

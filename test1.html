@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار الذكاء الرقمي</title>
+    <title>Test Page with Questioning Cartoon</title>
+  <style>
+    body {
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+      /* Background settings */
+      background-image: url('https://wallpapercave.com/wp/wp2912709.jpg');
+      background-size: cover;     /* Makes it adjust to screen */
+      background-position: center;/* Centers the image */
+      background-attachment: fixed; /* Stays in place when scrolling */
+    }
+    h1 {
+      color: white;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    }
+    .cartoon-container {
+      background: white;
+      display: inline-block;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .cartoon-container img {
+      width: 300px;
+      height: auto;
+      border-radius: 10px;
+    }
+    p {
+      color: #555;
+      font-size: 18px;
+      margin-top: 15px;
+    }
+     .next-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #ff9800;
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 8px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+    }
+    .next-button:hover {
+      background-color: #e68900;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Welcome to the Test Page</h1>
+
+  <div class="cartoon-container">
+    <img src="https://www.icegif.com/wp-content/uploads/2023/07/icegif-1156.gif" 
+         alt="Questioning Cartoon">
+    <p>فكر واجب بذكاء  🤔</p>
+    <a href="/test2" class="next-button">التالي - Test 2</a>
+  </div>
+
+</body>
+</html>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --accent-color: #e74c3c;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --dark-text: #2c3e50;
+            --border-color: #dfe6e9;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background: var(--white);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 15px;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+        
+        .instructions {
+            background-color: #fff8e1;
+            padding: 20px;
+            border-radius: 10px;
+            border-right: 4px solid #ffc107;
+            margin-bottom: 30px;
+        }
+        
+        .question {
+            margin-bottom: 30px;
+            padding: 25px;
+            background-color: var(--light-bg);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .question-text {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+        }
+        
+        .options {
+            margin-right: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .option {
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            background-color: var(--white);
+            display: flex;
+            align-items: center;
+            min-height: 80px;
+        }
+        
+        .option:hover {
+            background-color: #e3f2fd;
+            transform: translateX(-5px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .option input {
+            margin-left: 15px;
+            transform: scale(1.3);
+            min-width: 20px;
+        }
+        
+        .option-label {
+            flex: 1;
+        }
+        
+        .submit-btn {
+            display: block;
+            width: 250px;
+            padding: 15px;
+            margin: 40px auto;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            font-weight: bold;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .results {
+            display: none;
+            margin-top: 50px;
+            padding: 30px;
+            background: linear-gradient(to right, #f8f9fa, #e8f4fc);
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid var(--border-color);
+        }
+        
+        .score-display {
+            font-size: 1.5rem;
+            margin: 25px 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 30px;
+            background-color: #e0e0e0;
+            border-radius: 15px;
+            margin: 25px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+            border-radius: 15px;
+            transition: width 0.7s ease;
+            position: relative;
+        }
+        
+        .progress-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-shadow: 0 0 3px rgba(0,0,0,0.5);
+        }
+        
+        .feedback {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e8f5e9;
+            border-radius: 10px;
+            border-right: 4px solid var(--secondary-color);
+            text-align: right;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 20px;
+            }
+            
+            .options {
+                grid-template-columns: 1fr;
+            }
+            
+            .question {
+                padding: 20px;
+            }
+            
+            .option {
+                padding: 12px;
+                min-height: 70px;
+            }
+            
+            .submit-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>اختبار الذكاء الرقمي</h1>
+        
+        <div class="instructions">
+            <h3>تعليمات الاختبار:</h3>
+            <ol>
+                <li>اقرأ كل سؤال بعناية قبل الإجابة</li>
+                <li>اختر الإجابة الصحيحة لكل سؤال</li>
+                <li>يجب الإجابة على جميع الأسئلة</li>
+                <li>اضغط على زر "إظهار النتيجة" عند الانتهاء</li>
+            </ol>
+        </div>
+        
+        <form id="digitalIntelligenceTest">
+            <!-- Question 1 -->
+            <div class="question">
+                <div class="question-text">1. ما هو تعريف مهارات الذكاء الرقمي الأساسية؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q1" value="a" required> القدرة على استخدام الأجهزة الإلكترونية للألعاب فقط</label>
+                    <label class="option"><input type="radio" name="q1" value="b"> المهارات التي تمكن الفرد من التعامل بفعالية وأمان مع التكنولوجيا الرقمية</label>
+                    <label class="option"><input type="radio" name="q1" value="c"> القدرة على تصميم مواقع إلكترونية متقدمة</label>
+                    <label class="option"><input type="radio" name="q1" value="d"> المهارات المتعلقة بالرياضيات فقط</label>
+                </div>
+            </div>
+            
+            <!-- Question 2 -->
+            <div class="question">
+                <div class="question-text">2. ما هي أهمية الشغف الدراسي في التعلم؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q2" value="a" required> زيادة الوقت المستغرق في الألعاب الإلكترونية</label>
+                    <label class="option"><input type="radio" name="q2" value="b"> تعزيز الدافعية والمشاركة في العملية التعليمية</label>
+                    <label class="option"><input type="radio" name="q2" value="c"> تقليل الوقت المخصص للدراسة</label>
+                    <label class="option"><input type="radio" name="q2" value="d"> تحسين مهارات البرمجة فقط</label>
+                </div>
+            </div>
+            
+            <!-- Question 3 -->
+            <div class="question">
+                <div class="question-text">3. أي من الآتي يمثل أنواع المعلومات الرقمية؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q3" value="a" required> النصوص، الصور، الفيديوهات</label>
+                    <label class="option"><input type="radio" name="q3" value="b"> الكتب الورقية، الدفاتر، الأقلام</label>
+                    <label class="option"><input type="radio" name="q3" value="c"> الأجهزة الإلكترونية فقط</label>
+                    <label class="option"><input type="radio" name="q3" value="d"> الألعاب التقليدية</label>
+                </div>
+            </div>
+            
+            <!-- Question 4 -->
+            <div class="question">
+                <div class="question-text">4. ما هي أدوات التواصل الرقمي الآمن؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q4" value="a" required> البريد الإلكتروني، الرسائل الفورية الآمنة</label>
+                    <label class="option"><input type="radio" name="q4" value="b"> الألعاب الجماعية عبر الإنترنت</label>
+                    <label class="option"><input type="radio" name="q4" value="c"> مشاركة كلمات المرور مع الأصدقاء</label>
+                    <label class="option"><input type="radio" name="q4" value="d"> استخدام شبكات الواي فاي العامة دون حماية</label>
+                </div>
+            </div>
+            
+            <!-- Question 5 -->
+            <div class="question">
+                <div class="question-text">5. ما هي الخطوات الأساسية لحل مشكلة رقمية بسيطة؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q5" value="a" required> تحديد المشكلة، البحث عن حلول، التجربة والتقييم</label>
+                    <label class="option"><input type="radio" name="q5" value="b"> تجاهل المشكلة واستبدال الجهاز</label>
+                    <label class="option"><input type="radio" name="q5" value="c"> مشاركة المشكلة مع الجميع على الإنترنت</label>
+                    <label class="option"><input type="radio" name="q5" value="d"> إعادة تشغيل الجهاز فقط</label>
+                </div>
+            </div>
+            
+            <!-- Question 6 -->
+            <div class="question">
+                <div class="question-text">6. أي من الآتي يمثل إجراءات الأمن الرقمي؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q6" value="a" required> استخدام كلمات مرور قوية، تفعيل التحقق الثنائي</label>
+                    <label class="option"><input type="radio" name="q6" value="b"> مشاركة كلمات المرور مع الأصدقاء</label>
+                    <label class="option"><input type="radio" name="q6" value="c"> استخدام شبكات عامة دون حماية</label>
+                    <label class="option"><input type="radio" name="q6" value="d"> تنزيل ملفات من مصادر مجهولة</label>
+                </div>
+            </div>
+            
+            <!-- Question 7 -->
+            <div class="question">
+                <div class="question-text">7. ما هو مفهوم التفكير الناقد في السياق الرقمي؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q7" value="a" required> تقييم المعلومات الرقمية للتأكد من مصداقيتها ودقتها</label>
+                    <label class="option"><input type="radio" name="q7" value="b"> تصديق جميع المعلومات المتوفرة على الإنترنت</label>
+                    <label class="option"><input type="radio" name="q7" value="c"> مشاركة المحتوى دون التحقق من مصدره</label>
+                    <label class="option"><input type="radio" name="q7" value="d"> تجنب استخدام الإنترنت نهائيًا</label>
+                </div>
+            </div>
+            
+            <!-- Question 8 -->
+            <div class="question">
+                <div class="question-text">8. ما هي خصائص الهوية الرقمية الإيجابية؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q8" value="a" required> التفاعل المسؤول، احترام الآخرين، نشر محتوى إيجابي</label>
+                    <label class="option"><input type="radio" name="q8" value="b"> مشاركة المعلومات الشخصية بحرية</label>
+                    <label class="option"><input type="radio" name="q8" value="c"> نشر تعليقات مسيئة لجذب الانتباه</label>
+                    <label class="option"><input type="radio" name="q8" value="d"> استخدام حسابات مجهولة فقط</label>
+                </div>
+            </div>
+            
+            <!-- Continue with all 24 questions in the same format -->
+            <!-- Question 9 -->
+            <div class="question">
+                <div class="question-text">9. كيف يمكن استخدام تطبيقات الذكاء الاصطناعي السمعية والبصرية في التعلم؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q9" value="a" required> لتصميم الألعاب الإلكترونية فقط</label>
+                    <label class="option"><input type="radio" name="q9" value="b"> لتقديم محتوى تعليمي مخصص وتفاعلي يناسب أساليب التعلم</label>
+                    <label class="option"><input type="radio" name="q9" value="c"> لتقليل وقت الدراسة</label>
+                    <label class="option"><input type="radio" name="q9" value="d"> لمشاركة المعلومات الشخصية</label>
+                </div>
+            </div>
+            
+            <!-- Question 10 -->
+            <div class="question">
+                <div class="question-text">10. ما العلاقة بين أساليب التعلم المفضلة والشغف الدراسي؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q10" value="a" required> لا توجد علاقة بينهما</label>
+                    <label class="option"><input type="radio" name="q10" value="b"> أساليب التعلم المفضلة تزيد من الدافعية والشغف بالتعلم</label>
+                    <label class="option"><input type="radio" name="q10" value="c"> أساليب التعلم تقلل من الشغف الدراسي</label>
+                    <label class="option"><input type="radio" name="q10" value="d"> الشغف الدراسي يعتمد على الألعاب فقط</label>
+                </div>
+            </div>
+            
+            <!-- Question 11 -->
+            <div class="question">
+                <div class="question-text">11. أي نوع من المعلومات الرقمية مناسب للاستخدام الدراسي؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q11" value="a" required> المعلومات من مصادر موثوقة ومرتبطة بالمنهج</label>
+                    <label class="option"><input type="radio" name="q11" value="b"> أي معلومات متاحة على الإنترنت</label>
+                    <label class="option"><input type="radio" name="q11" value="c"> مقاطع الفيديو الترفيهية فقط</label>
+                    <label class="option"><input type="radio" name="q11" value="d"> الصور غير المتعلقة بالموضوع</label>
+                </div>
+            </div>
+            
+            <!-- Question 12 -->
+            <div class="question">
+                <div class="question-text">12. لماذا يعتبر التواصل الرقمي الآمن والأخلاقي مهمًا؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q12" value="a" required> لأنه يقلل من سرعة الإنترنت</label>
+                    <label class="option"><input type="radio" name="q12" value="b"> لحماية الخصوصية وتعزيز التفاعل الإيجابي</label>
+                    <label class="option"><input type="radio" name="q12" value="c"> لزيادة عدد الأصدقاء عبر الإنترنت</label>
+                    <label class="option"><input type="radio" name="q12" value="d"> لمشاركة المعلومات الشخصية بحرية</label>
+                </div>
+            </div>
+            
+            <!-- Question 13 -->
+            <div class="question">
+                <div class="question-text">13. كيف يمكن تحليل خطوات حل مشكلة رقمية باستخدام أدوات الذكاء الاصطناعي؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q13" value="a" required> باستخدام أدوات تشخيص ذكية لتحديد المشكلة واقتراح الحلول</label>
+                    <label class="option"><input type="radio" name="q13" value="b"> بتجاهل المشكلة واستبدال الجهاز</label>
+                    <label class="option"><input type="radio" name="q13" value="c"> بمشاركة المشكلة على وسائل التواصل</label>
+                    <label class="option"><input type="radio" name="q13" value="d"> بإعادة تشغيل الجهاز فقط</label>
+                </div>
+            </div>
+            
+            <!-- Question 14 -->
+            <div class="question">
+                <div class="question-text">14. ما هي إجراءات الحفاظ على الأمن الرقمي؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q14" value="a" required> استخدام كلمات مرور قوية وتجنب فتح روابط مشبوهة</label>
+                    <label class="option"><input type="radio" name="q14" value="b"> مشاركة كلمات المرور مع الأصدقاء</label>
+                    <label class="option"><input type="radio" name="q14" value="c"> تنزيل ملفات من مصادر غير موثوقة</label>
+                    <label class="option"><input type="radio" name="q14" value="d"> استخدام شبكات عامة دون حماية</label>
+                </div>
+            </div>
+            
+            <!-- Question 15 -->
+            <div class="question">
+                <div class="question-text">15. لماذا يعتبر التفكير الناقد مهمًا في تقييم المحتوى الرقمي؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q15" value="a" required> لتجنب تصديق المعلومات المضللة والتحقق من المصادر</label>
+                    <label class="option"><input type="radio" name="q15" value="b"> لتسريع عملية البحث على الإنترنت</label>
+                    <label class="option"><input type="radio" name="q15" value="c"> لنشر المحتوى دون التحقق منه</label>
+                    <label class="option"><input type="radio" name="q15" value="d"> لتقليل استخدام الإنترنت</label>
+                </div>
+            </div>
+            
+            <!-- Question 16 -->
+            <div class="question">
+                <div class="question-text">16. كيف يمكن بناء هوية رقمية إيجابية؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q16" value="a" required> من خلال التفاعل المسؤول ونشر محتوى يعكس قيمًا إيجابية</label>
+                    <label class="option"><input type="radio" name="q16" value="b"> من خلال مشاركة المعلومات الشخصية بحرية</label>
+                    <label class="option"><input type="radio" name="q16" value="c"> من خلال استخدام حسابات مجهولة</label>
+                    <label class="option"><input type="radio" name="q16" value="d"> من خلال نشر تعليقات مسيئة</label>
+                </div>
+            </div>
+            
+            <!-- Question 17 -->
+            <div class="question">
+                <div class="question-text">17. أي من الآتي يمثل استخدام تطبيقات الذكاء الاصطناعي السمعية والبصرية لإنجاز مهمة دراسية؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q17" value="a" required> إنشاء عرض تقديمي باستخدام أدوات ذكية مثل Canva أو PowerPoint</label>
+                    <label class="option"><input type="radio" name="q17" value="b"> مشاركة صور شخصية على وسائل التواصل</label>
+                    <label class="option"><input type="radio" name="q17" value="c"> تنزيل ألعاب إلكترونية</label>
+                    <label class="option"><input type="radio" name="q17" value="d"> تجاهل الأدوات الذكية والاعتماد على الكتب فقط</label>
+                </div>
+            </div>
+            
+            <!-- Question 18 -->
+            <div class="question">
+                <div class="question-text">18. كيف يمكن تطبيق أساليب التعلم المفضلة لتعزيز الشغف الدراسي؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q18" value="a" required> استخدام مقاطع فيديو تعليمية للمتعلمين البصريين أو بودكاست للمتعلمين السمعيين</label>
+                    <label class="option"><input type="radio" name="q18" value="b"> قضاء وقت طويل في الألعاب الإلكترونية</label>
+                    <label class="option"><input type="radio" name="q18" value="c"> تجنب استخدام التكنولوجيا في التعلم</label>
+                    <label class="option"><input type="radio" name="q18" value="d"> نسخ المحتوى من الإنترنت دون فهم</label>
+                </div>
+            </div>
+            
+            <!-- Question 19 -->
+            <div class="question">
+                <div class="question-text">19. ما الطريقة الصحيحة لإدارة المعلومات الرقمية بشكل آمن ومنظم؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q19" value="a" required> تصنيف الملفات في مجلدات واستخدام كلمات مرور لحمايتها</label>
+                    <label class="option"><input type="radio" name="q19" value="b"> حفظ جميع الملفات على سطح المكتب دون تنظيم</label>
+                    <label class="option"><input type="radio" name="q19" value="c"> مشاركة الملفات مع الجميع</label>
+                    <label class="option"><input type="radio" name="q19" value="d"> حذف الملفات بعد الاستخدام مباشرة</label>
+                </div>
+            </div>
+            
+            <!-- Question 20 -->
+            <div class="question">
+                <div class="question-text">20. كيف تمارس التواصل الرقمي باستخدام أدوات آمنة ومناسبة؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q20" value="a" required> إرسال رسائل بريد إلكتروني باستخدام عناوين موثوقة وتجنب المرفقات المجهولة</label>
+                    <label class="option"><input type="radio" name="q20" value="b"> مشاركة معلومات شخصية عبر الرسائل العامة</label>
+                    <label class="option"><input type="radio" name="q20" value="c"> استخدام شبكات واي فاي عامة دون حماية</label>
+                    <label class="option"><input type="radio" name="q20" value="d"> إرسال رسائل مجهولة المصدر</label>
+                </div>
+            </div>
+            
+            <!-- Question 21 -->
+            <div class="question">
+                <div class="question-text">21. كيف يمكن حل مشكلة رقمية باستخدام مهارات التفكير الناقد؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q21" value="a" required> تحليل المشكلة، التحقق من المصادر، واختبار الحلول</label>
+                    <label class="option"><input type="radio" name="q21" value="b"> تجاهل المشكلة وطلب جهاز جديد</label>
+                    <label class="option"><input type="radio" name="q21" value="c"> مشاركة المشكلة على وسائل التواصل</label>
+                    <label class="option"><input type="radio" name="q21" value="d"> إعادة تشغيل الجهاز دون تحليل</label>
+                </div>
+            </div>
+            
+            <!-- Question 22 -->
+            <div class="question">
+                <div class="question-text">22. ما هي الطريقة الصحيحة لتطبيق إجراءات الأمن الرقمي في الأنشطة اليومية؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q22" value="a" required> تفعيل المصادقة الثنائية وتحديث كلمات المرور بانتظام</label>
+                    <label class="option"><input type="radio" name="q22" value="b"> مشاركة كلمات المرور مع الأصدقاء</label>
+                    <label class="option"><input type="radio" name="q22" value="c"> فتح روابط مجهولة المصدر</label>
+                    <label class="option"><input type="radio" name="q22" value="d"> استخدام كلمة مرور واحدة لجميع الحسابات</label>
+                </div>
+            </div>
+            
+            <!-- Question 23 -->
+            <div class="question">
+                <div class="question-text">23. كيف يمكن تقييم محتوى رقمي باستخدام التفكير الناقد؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q23" value="a" required> التحقق من مصداقية المصدر ودقة المعلومات</label>
+                    <label class="option"><input type="radio" name="q23" value="b"> تصديق المحتوى بناءً على عدد المشاهدات</label>
+                    <label class="option"><input type="radio" name="q23" value="c"> مشاركة المحتوى دون التحقق منه</label>
+                    <label class="option"><input type="radio" name="q23" value="d"> تجنب قراءة المحتوى الرقمي</label>
+                </div>
+            </div>
+            
+            <!-- Question 24 -->
+            <div class="question">
+                <div class="question-text">24. ما الطريقة الصحيحة لبناء هوية رقمية إيجابية من خلال التفاعل الرقمي المسؤول؟</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q24" value="a" required> نشر محتوى يعكس القيم الإيجابية واحترام الآخرين</label>
+                    <label class="option"><input type="radio" name="q24" value="b"> استخدام حسابات مجهولة للتعليق</label>
+                    <label class="option"><input type="radio" name="q24" value="c"> نشر تعليقات مسيئة لجذب الانتباه</label>
+                    <label class="option"><input type="radio" name="q24" value="d"> مشاركة المعلومات الشخصية بحرية</label>
+                </div>
+            </div>
+            
+            <button type="button" class="submit-btn" onclick="calculateResults()">إظهار النتيجة</button>
+        </form>
+        
+        <div id="results" class="results">
+            <h2>نتيجة اختبار الذكاء الرقمي</h2>
+            <div class="score-display">
+                لقد حصلت على <span id="totalScore">0</span> من أصل 24
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar" style="width: 0%">
+                    <div class="progress-value" id="progressValue">0%</div>
+                </div>
+            </div>
+            
+            <div class="feedback" id="feedback">
+                <!-- Feedback will be inserted here -->
+            </div>
+            
+            <button type="button" class="submit-btn" onclick="saveResults()">حفظ النتائج</button>
+        </div>
+    </div>
+
+    <script>
+        // Correct answers
+        const correctAnswers = {
+            q1: "b", q2: "b", q3: "a", q4: "a", q5: "a", q6: "a", q7: "a", q8: "a",
+            q9: "b", q10: "b", q11: "a", q12: "b", q13: "a", q14: "a", q15: "a", q16: "a",
+            q17: "a", q18: "a", q19: "a", q20: "a", q21: "a", q22: "a", q23: "a", q24: "a"
+        };
+        
+        // Feedback based on score ranges
+        const feedbackMessages = [
+            { range: [0, 8], message: "تحتاج إلى تطوير مهاراتك الرقمية. ننصحك بالبدء في تعلم أساسيات التعامل مع التكنولوجيا الرقمية والأمن السيبراني." },
+            { range: [9, 16], message: "لديك معرفة أساسية بمهارات الذكاء الرقمي. يمكنك تحسين مهاراتك بالتعمق في مفاهيم الأمن الرقمي والتفكير النقدي." },
+            { range: [17, 21], message: "ممتاز! لديك فهم جيد لمهارات الذكاء الرقمي. يمكنك تطوير مهاراتك أكثر بالتعمق في تقنيات الذكاء الاصطناعي." },
+            { range: [22, 24], message: "رائع! لديك مهارات رقمية متقدمة. يمكنك الآن تعلم كيفية تطبيق هذه المهارات في مشاريع أكثر تقدمًا." }
+        ];
+        
+        function calculateResults() {
+            // Check if all questions are answered
+            const allQuestions = document.querySelectorAll('input[type="radio"]:checked');
+            if (allQuestions.length < 24) {
+                alert("الرجاء الإجابة على جميع الأسئلة قبل تقديم الاختبار");
+                return;
+            }
+            
+            // Calculate score
+            let score = 0;
+            for (let i = 1; i <= 24; i++) {
+                const selectedOption = document.querySelector(`input[name="q${i}"]:checked`).value;
+                if (selectedOption === correctAnswers[`q${i}`]) {
+                    score++;
+                }
+            }
+            
+            // Calculate percentage
+            const percentage = Math.round((score / 24) * 100);
+            
+            // Update UI
+            document.getElementById('totalScore').textContent = score;
+            document.getElementById('progressBar').style.width = `${percentage}%`;
+            document.getElementById('progressValue').textContent = `${percentage}%`;
+            
+            // Provide feedback
+            let feedback = "";
+            for (const item of feedbackMessages) {
+                if (score >= item.range[0] && score <= item.range[1]) {
+                    feedback = item.message;
+                    break;
+                }
+            }
+            document.getElementById('feedback').innerHTML = `<p>${feedback}</p>`;
+            
+            // Show results
+            document.getElementById('results').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function saveResults() {
+            const score = parseInt(document.getElementById('totalScore').textContent);
+            const studentName = prompt("من فضلك أدخل اسمك:");
+            
+            if (!studentName) return;
+            
+            // Save to localStorage
+            const resultData = {
+                exam: "اختبار الذكاء الرقمي",
+                student: studentName,
+                score: score,
+                percentage: Math.round((score / 24) * 100),
+                date: new Date().toLocaleDateString('ar-EG')
+            };
+            
+            let examResults = JSON.parse(localStorage.getItem('examResults')) || [];
+            examResults.push(resultData);
+            localStorage.setItem('examResults', JSON.stringify(examResults));
+            
+            alert("تم حفظ النتائج بنجاح!");
+            
+            // Here you can add code to send results to a server if needed
+        }
+    </script>
+    </div>
+    <button onclick="submitExam()">إنهاء الامتحان</button>
+
+<script>
+function submitExam() {
+    const answers = {
+        student_name: "أحمد علي",
+        student_id: "12345",
+        answers: ["A", "C", "B", "D"] // دي الإجابات مثلا
+    };
+
+    fetch("http://127.0.0.1:5000/submit_exam", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(answers)
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+    });
+}
+</script>
+
+<a href="/test2" class="next-button">التالي ➡</a>
+</div>
+</body>
+</html>

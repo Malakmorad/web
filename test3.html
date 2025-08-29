@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استبيان شغفك الدراسي</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --accent-color: #e74c3c;
+            --primary-bg: #f8f9fa;
+            --secondary-bg: #ffffff;
+            --text-color: #2c3e50;
+            --border-color: #dfe6e9;
+        }
+        
+        body {
+            font-family: 'Tajawal', 'Arial', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px;
+            background: var(--secondary-bg);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--secondary-color);
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: var(--accent-color);
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .intro {
+            background: linear-gradient(135deg, #e8f4fc 0%, #f0f7ff 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border-right: 5px solid var(--primary-color);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .instructions {
+            background-color: #fff8e1;
+            padding: 20px;
+            border-radius: 10px;
+            border-right: 4px solid #ffc107;
+            margin-bottom: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+            table-layout: fixed;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            word-wrap: break-word;
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 500;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #e3f2fd;
+        }
+        
+        .question-number {
+            font-weight: bold;
+            color: var(--accent-color);
+            width: 5%;
+        }
+        
+        .question-text {
+            text-align: right;
+            padding-right: 10px;
+            width: 55%;
+        }
+        
+        .likert-scale {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .likert-option {
+            text-align: center;
+            flex: 1;
+            padding: 5px;
+        }
+        
+        .likert-option input {
+            margin-left: 5px;
+            transform: scale(1.3);
+        }
+        
+        .submit-btn {
+            display: block;
+            width: 250px;
+            padding: 15px;
+            margin: 40px auto;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            font-weight: bold;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        .results {
+            display: none;
+            margin-top: 50px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4fc 100%);
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid var(--border-color);
+        }
+        
+        .results h2 {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+        
+        .category {
+            margin-bottom: 30px;
+            text-align: right;
+        }
+        
+        .category h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .score-bar {
+            height: 30px;
+            background-color: #e0e0e0;
+            border-radius: 15px;
+            margin: 10px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .score-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+            border-radius: 15px;
+            transition: width 0.5s ease;
+        }
+        
+        .score-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            text-shadow: 0 0 3px rgba(0,0,0,0.5);
+        }
+        
+        .next-test-btn {
+            display: block;
+            width: 200px;
+            padding: 12px;
+            margin: 30px auto;
+            background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .next-test-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                margin: 15px;
+            }
+            
+            table {
+                font-size: 0.85rem;
+                display: block;
+                overflow-x: auto;
+            }
+            
+            th, td {
+                padding: 8px 5px;
+                min-width: 80px;
+            }
+            
+            .question-number {
+                width: 40px;
+            }
+            
+            .question-text {
+                width: calc(100% - 200px);
+            }
+            
+            .likert-scale {
+                flex-direction: column;
+            }
+            
+            .likert-option {
+                text-align: right;
+                padding: 5px 0;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+            }
+            
+            .likert-option input {
+                order: -1;
+                margin-left: 0;
+                margin-right: 10px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>استبيان شغفك الدراسي</h1>
+        
+        <div class="intro">
+            <p>يهدف هذا الاستبيان إلى قياس شغفك الدراسي في بيئة التعلم التكيفية القائمة على تطبيقات الذكاء الاصطناعي وأساليب التعلم المفضلة (سمعية وبصرية).</p>
+        </div>
+        
+        <div class="instructions">
+            <h3>تعليمات:</h3>
+            <p>عزيزي التلميذ، يرجى قراءة كل عبارة بعناية واختيار الإجابة التي تعبر عن شعورك أو سلوكك باستخدام مقياس ليكرت الخماسي التالي:</p>
+            <p><strong>(5: دائمًا، 4: غالبًا، 3: أحيانًا، 2: نادرًا، 1: أبدًا)</strong></p>
+        </div>
+        
+        <form id="passionSurvey">
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="scale" value="5" disabled> دائمًا (5)</div>
+                <div class="likert-option"><input type="radio" name="scale" value="4" disabled> غالبًا (4)</div>
+                <div class="likert-option"><input type="radio" name="scale" value="3" disabled> أحيانًا (3)</div>
+                <div class="likert-option"><input type="radio" name="scale" value="2" disabled> نادرًا (2)</div>
+                <div class="likert-option"><input type="radio" name="scale" value="1" disabled> أبدًا (1)</div>
+            </div>
+            
+            <h2>الدافعية الذاتية</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="question-number">م</th>
+                        <th class="question-text">العبارة</th>
+                        <th width="8%">دائمًا (5)</th>
+                        <th width="8%">غالبًا (4)</th>
+                        <th width="8%">أحيانًا (3)</th>
+                        <th width="8%">نادرًا (2)</th>
+                        <th width="8%">أبدًا (1)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="question-number">1</td>
+                        <td class="question-text">أشعر بالحماس عندما أبدأ الدراسة يوميًا.</td>
+                        <td><input type="radio" name="q1" value="5" required></td>
+                        <td><input type="radio" name="q1" value="4"></td>
+                        <td><input type="radio" name="q1" value="3"></td>
+                        <td><input type="radio" name="q1" value="2"></td>
+                        <td><input type="radio" name="q1" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">2</td>
+                        <td class="question-text">أجد متعة في تعلم أشياء جديدة في المدرسة.</td>
+                        <td><input type="radio" name="q2" value="5" required></td>
+                        <td><input type="radio" name="q2" value="4"></td>
+                        <td><input type="radio" name="q2" value="3"></td>
+                        <td><input type="radio" name="q2" value="2"></td>
+                        <td><input type="radio" name="q2" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">3</td>
+                        <td class="question-text">أشعر بالفخر عندما أنجز مهامي الدراسية بنجاح.</td>
+                        <td><input type="radio" name="q3" value="5" required></td>
+                        <td><input type="radio" name="q3" value="4"></td>
+                        <td><input type="radio" name="q3" value="3"></td>
+                        <td><input type="radio" name="q3" value="2"></td>
+                        <td><input type="radio" name="q3" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">4</td>
+                        <td class="question-text">أحب مشاركة المعلمين والزملاء في الأنشطة الدراسية.</td>
+                        <td><input type="radio" name="q4" value="5" required></td>
+                        <td><input type="radio" name="q4" value="4"></td>
+                        <td><input type="radio" name="q4" value="3"></td>
+                        <td><input type="radio" name="q4" value="2"></td>
+                        <td><input type="radio" name="q4" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">5</td>
+                        <td class="question-text">أشعر بالرغبة في التعلم حتى عندما أواجه صعوبات.</td>
+                        <td><input type="radio" name="q5" value="5" required></td>
+                        <td><input type="radio" name="q5" value="4"></td>
+                        <td><input type="radio" name="q5" value="3"></td>
+                        <td><input type="radio" name="q5" value="2"></td>
+                        <td><input type="radio" name="q5" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">6</td>
+                        <td class="question-text">أضع أهدافًا شخصية لتحسين أدائي الدراسي.</td>
+                        <td><input type="radio" name="q6" value="5" required></td>
+                        <td><input type="radio" name="q6" value="4"></td>
+                        <td><input type="radio" name="q6" value="3"></td>
+                        <td><input type="radio" name="q6" value="2"></td>
+                        <td><input type="radio" name="q6" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">7</td>
+                        <td class="question-text">أشعر بالرضا عندما أتعلم شيئًا جديدًا باستخدام التكنولوجيا.</td>
+                        <td><input type="radio" name="q7" value="5" required></td>
+                        <td><input type="radio" name="q7" value="4"></td>
+                        <td><input type="radio" name="q7" value="3"></td>
+                        <td><input type="radio" name="q7" value="2"></td>
+                        <td><input type="radio" name="q7" value="1"></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2>التفاعل مع المحتوى التعليمي</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="question-number">م</th>
+                        <th class="question-text">العبارة</th>
+                        <th width="8%">دائمًا (5)</th>
+                        <th width="8%">غالبًا (4)</th>
+                        <th width="8%">أحيانًا (3)</th>
+                        <th width="8%">نادرًا (2)</th>
+                        <th width="8%">أبدًا (1)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="question-number">8</td>
+                        <td class="question-text">أستمتع باستخدام تطبيقات الذكاء الاصطناعي في التعلم.</td>
+                        <td><input type="radio" name="q8" value="5" required></td>
+                        <td><input type="radio" name="q8" value="4"></td>
+                        <td><input type="radio" name="q8" value="3"></td>
+                        <td><input type="radio" name="q8" value="2"></td>
+                        <td><input type="radio" name="q8" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">9</td>
+                        <td class="question-text">أفضل استخدام مقاطع الفيديو التعليمية لفهم المواد الدراسية.</td>
+                        <td><input type="radio" name="q9" value="5" required></td>
+                        <td><input type="radio" name="q9" value="4"></td>
+                        <td><input type="radio" name="q9" value="3"></td>
+                        <td><input type="radio" name="q9" value="2"></td>
+                        <td><input type="radio" name="q9" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">10</td>
+                        <td class="question-text">أجد المواد السمعية (مثل البودكاست) ممتعة للتعلم.</td>
+                        <td><input type="radio" name="q10" value="5" required></td>
+                        <td><input type="radio" name="q10" value="4"></td>
+                        <td><input type="radio" name="q10" value="3"></td>
+                        <td><input type="radio" name="q10" value="2"></td>
+                        <td><input type="radio" name="q10" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">11</td>
+                        <td class="question-text">أحب استكشاف الموضوعات الدراسية التي تهمني.</td>
+                        <td><input type="radio" name="q11" value="5" required></td>
+                        <td><input type="radio" name="q11" value="4"></td>
+                        <td><input type="radio" name="q11" value="3"></td>
+                        <td><input type="radio" name="q11" value="2"></td>
+                        <td><input type="radio" name="q11" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">12</td>
+                        <td class="question-text">أشارك بنشاط في الأنشطة التعليمية التفاعلية.</td>
+                        <td><input type="radio" name="q12" value="5" required></td>
+                        <td><input type="radio" name="q12" value="4"></td>
+                        <td><input type="radio" name="q12" value="3"></td>
+                        <td><input type="radio" name="q12" value="2"></td>
+                        <td><input type="radio" name="q12" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">13</td>
+                        <td class="question-text">أستمتع بحل الأسئلة التفاعلية في بيئة التعلم الرقمية.</td>
+                        <td><input type="radio" name="q13" value="5" required></td>
+                        <td><input type="radio" name="q13" value="4"></td>
+                        <td><input type="radio" name="q13" value="3"></td>
+                        <td><input type="radio" name="q13" value="2"></td>
+                        <td><input type="radio" name="q13" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">14</td>
+                        <td class="question-text">أجد أن المحتوى الدراسي المقدم بصريًا يزيد من اهتمامي.</td>
+                        <td><input type="radio" name="q14" value="5" required></td>
+                        <td><input type="radio" name="q14" value="4"></td>
+                        <td><input type="radio" name="q14" value="3"></td>
+                        <td><input type="radio" name="q14" value="2"></td>
+                        <td><input type="radio" name="q14" value="1"></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2>الارتباط بالاهتمامات الشخصية</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="question-number">م</th>
+                        <th class="question-text">العبارة</th>
+                        <th width="8%">دائمًا (5)</th>
+                        <th width="8%">غالبًا (4)</th>
+                        <th width="8%">أحيانًا (3)</th>
+                        <th width="8%">نادرًا (2)</th>
+                        <th width="8%">أبدًا (1)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="question-number">15</td>
+                        <td class="question-text">أربط المواد الدراسية باهتماماتي الشخصية.</td>
+                        <td><input type="radio" name="q15" value="5" required></td>
+                        <td><input type="radio" name="q15" value="4"></td>
+                        <td><input type="radio" name="q15" value="3"></td>
+                        <td><input type="radio" name="q15" value="2"></td>
+                        <td><input type="radio" name="q15" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">16</td>
+                        <td class="question-text">أشعر أن التعلم يساعدني على تحقيق أحلامي.</td>
+                        <td><input type="radio" name="q16" value="5" required></td>
+                        <td><input type="radio" name="q16" value="4"></td>
+                        <td><input type="radio" name="q16" value="3"></td>
+                        <td><input type="radio" name="q16" value="2"></td>
+                        <td><input type="radio" name="q16" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">17</td>
+                        <td class="question-text">أحب تعلم الموضوعات التي أشعر أنها قريبة من هواياتي.</td>
+                        <td><input type="radio" name="q17" value="5" required></td>
+                        <td><input type="radio" name="q17" value="4"></td>
+                        <td><input type="radio" name="q17" value="3"></td>
+                        <td><input type="radio" name="q17" value="2"></td>
+                        <td><input type="radio" name="q17" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">18</td>
+                        <td class="question-text">أجد التعلم ممتعًا عندما يكون مرتبطًا بحياتي اليومية.</td>
+                        <td><input type="radio" name="q18" value="5" required></td>
+                        <td><input type="radio" name="q18" value="4"></td>
+                        <td><input type="radio" name="q18" value="3"></td>
+                        <td><input type="radio" name="q18" value="2"></td>
+                        <td><input type="radio" name="q18" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">19</td>
+                        <td class="question-text">أشعر بالحماس عندما أتعلم عن موضوع أحبه.</td>
+                        <td><input type="radio" name="q19" value="5" required></td>
+                        <td><input type="radio" name="q19" value="4"></td>
+                        <td><input type="radio" name="q19" value="3"></td>
+                        <td><input type="radio" name="q19" value="2"></td>
+                        <td><input type="radio" name="q19" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td class="question-number">20</td>
+                        <td class="question-text">أشارك في الأنشطة التي تتيح لي التعبير عن اهتماماتي.</td>
+                        <td><input type="radio" name="q20" value="5" required></td>
+                        <td><input type="radio" name="q20" value="4"></td>
+                        <td><input type="radio" name="q20" value="3"></td>
+                        <td><input type="radio" name="q20" value="2"></td>
+                        <td><input type="radio" name="q20" value="1"></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <button type="button" class="submit-btn" onclick="calculatePassionResults()">تقديم الاستبيان</button>
+        </form>
+        
+        <div id="results" class="results">
+            <h2>نتائج استبيان شغفك الدراسي</h2>
+            <p>بناءً على إجاباتك، إليك تحليل شغفك الدراسي:</p>
+            
+            <div class="category">
+                <h3>الدافعية الذاتية</h3>
+                <div class="score-bar">
+                    <div class="score-fill" id="motivationScore" style="width: 0%"></div>
+                    <div class="score-value" id="motivationValue">0%</div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <h3>التفاعل مع المحتوى التعليمي</h3>
+                <div class="score-bar">
+                    <div class="score-fill" id="interactionScore" style="width: 0%"></div>
+                    <div class="score-value" id="interactionValue">0%</div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <h3>الارتباط بالاهتمامات الشخصية</h3>
+                <div class="score-bar">
+                    <div class="score-fill" id="interestScore" style="width: 0%"></div>
+                    <div class="score-value" id="interestValue">0%</div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <h3>التفاعل مع أدوات الذكاء الاصطناعي</h3>
+                <div class="score-bar">
+                    <div class="score-fill" id="aiScore" style="width: 0%"></div>
+                    <div class="score-value" id="aiValue">0%</div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <h3>التفكير الناقد والإبداع</h3>
+                <div class="score-bar">
+                    <div class="score-fill" id="thinkingScore" style="width: 0%"></div>
+                    <div class="score-value" id="thinkingValue">0%</div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <h3>إدارة الوقت والتنظيم</h3>
+                <div class="score-bar">
+                    <div class="score-fill" id="timeScore" style="width: 0%"></div>
+                    <div class="score-value" id="timeValue">0%</div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <h3>التفاعل الاجتماعي في التعلم</h3>
+                <div class="score-bar">
+                    <div class="score-fill" id="socialScore" style="width: 0%"></div>
+                    <div class="score-value" id="socialValue">0%</div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <h3>الرضا عن بيئة التعلم التكيفية</h3>
+                <div class="score-bar">
+                    <div class="score-fill" id="satisfactionScore" style="width: 0%"></div>
+                    <div class="score-value" id="satisfactionValue">0%</div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <h3>الثقة بالنفس الأكاديمية</h3>
+                <div class="score-bar">
+                    <div class="score-fill" id="confidenceScore" style="width: 0%"></div>
+                    <div class="score-value" id="confidenceValue">0%</div>
+                </div>
+            </div>
+            
+            <a href="/test4" class="next-test-btn">التالي - Test 4</a>
+        </div>
+    </div>
+
+    <script>
+        function calculatePassionResults() {
+            // Check if all questions are answered
+            const allQuestions = document.querySelectorAll('input[type="radio"]:checked');
+            if (allQuestions.length < 20) {
+                alert("الرجاء الإجابة على جميع الأسئلة قبل تقديم الاستبيان");
+                return;
+            }
+            
+            // Calculate scores for each category (using only the first 20 questions)
+            const categories = {
+                motivation: calculateCategoryScore([1, 2, 3, 4, 5, 6, 7]),
+                interaction: calculateCategoryScore([8, 9, 10, 11, 12, 13, 14]),
+                interest: calculateCategoryScore([15, 16, 17, 18, 19, 20]),
+                ai: calculateCategoryScore([8, 14]), // Using some questions for AI interaction
+                thinking: calculateCategoryScore([3, 6, 11, 16]), // Using some questions for critical thinking
+                time: calculateCategoryScore([5, 6]), // Using some questions for time management
+                social: calculateCategoryScore([4, 12]), // Using some questions for social interaction
+                satisfaction: calculateCategoryScore([7, 9, 10, 13, 14]), // Using some questions for satisfaction
+                confidence: calculateCategoryScore([1, 2, 3, 5, 6]) // Using some questions for confidence
+            };
+            
+            // Calculate overall score
+            const totalScore = Object.values(categories).reduce((sum, score) => sum + score, 0);
+            const averageScore = Math.round(totalScore / Object.keys(categories).length);
+            
+            // Update the UI with scores
+            updateScore('motivationScore', 'motivationValue', categories.motivation);
+            updateScore('interactionScore', 'interactionValue', categories.interaction);
+            updateScore('interestScore', 'interestValue', categories.interest);
+            updateScore('aiScore', 'aiValue', categories.ai);
+            updateScore('thinkingScore', 'thinkingValue', categories.thinking);
+            updateScore('timeScore', 'timeValue', categories.time);
+            updateScore('socialScore', 'socialValue', categories.social);
+            updateScore('satisfactionScore', 'satisfactionValue', categories.satisfaction);
+            updateScore('confidenceScore', 'confidenceValue', categories.confidence);
+            
+            // Save results to database
+            savePassionResults(averageScore, categories);
+            
+            // Show results section
+            document.getElementById('results').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function savePassionResults(overallScore, categories) {
+            const studentName = prompt("من فضلك أدخل اسمك:");
+            if (!studentName) return;
+            
+            const resultData = {
+                student_name: studentName,
+                test_type: "Passion Survey",
+                total_score: overallScore,
+                percentage: overallScore,
+                grade: getGrade(overallScore),
+                categories: categories,
+                submission_date: new Date().toISOString()
+            };
+            
+            // Save to database via Flask endpoint
+            fetch("/submit_exam", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(resultData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("تم حفظ النتائج بنجاح!");
+                } else {
+                    alert("حدث خطأ في حفظ النتائج");
+                }
+            })
+            .catch(error => {
+                console.error("Error saving results:", error);
+                alert("حدث خطأ في حفظ النتائج");
+            });
+        }
+        
+        function getGrade(percentage) {
+            if (percentage >= 90) return "ممتاز";
+            if (percentage >= 80) return "جيد جداً";
+            if (percentage >= 70) return "جيد";
+            if (percentage >= 60) return "مقبول";
+            return "ضعيف";
+        }
+        
+        function calculateCategoryScore(questionNumbers) {
+            let total = 0;
+            let maxPossible = questionNumbers.length * 5;
+            
+            questionNumbers.forEach(qNum => {
+                const selectedValue = document.querySelector(`input[name="q${qNum}"]:checked`).value;
+                total += parseInt(selectedValue);
+            });
+            
+            // Calculate percentage
+            return Math.round((total / maxPossible) * 100);
+        }
+        
+        function updateScore(barId, valueId, percentage) {
+            const barElement = document.getElementById(barId);
+            const valueElement = document.getElementById(valueId);
+            
+            barElement.style.width = '0%';
+            valueElement.textContent = '0%';
+            
+            // Force reflow to reset animation
+            void barElement.offsetWidth;
+            
+            // Animate to the final percentage
+            barElement.style.width = percentage + '%';
+            valueElement.textContent = percentage + '%';
+        }
+        function saveResults(examName, studentName, score) {
+  // جلب النتائج الحالية من LocalStorage أو إنشاء مصفوفة جديدة
+  const allResults = JSON.parse(localStorage.getItem('examResults')) || [];
+  
+  // إضافة النتيجة الجديدة
+  allResults.push({
+    exam: examName, // اسم الاختبار (Exam1 أو Exam2)
+    student: studentName,
+    score: score,
+    date: new Date().toLocaleDateString('ar-EG') // تاريخ اليوم
+  });
+  
+  // حفظ النتائج في LocalStorage
+  localStorage.setItem('examResults', JSON.stringify(allResults));
+  
+  // توجيه الطالب إلى صفحة النتائج
+  window.location.href = "result.html";
+}
+    </script>
+   
+    <!-- أضف هذا في header جميع الصفحات -->
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // الإعدادات - ضعها في جميع الصفحات
+  const firebaseConfig = {
+    apiKey: "AIzaSyXXXX...",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_BUCKET.appspot.com",
+    messagingSenderId: "123456789",
+    appId: "1:123456789:web:abcdef123456"
+  };
+  
+  // التهيئة - ضعها مرة واحدة في كل صفحة
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+  const db = firebase.firestore();
+</script>
+<script>
+  async function saveResults(examName, score) {
+    // جلب بيانات الطالب من localStorage
+    const student = JSON.parse(localStorage.getItem('currentUser'));
+    
+    // إذا كنت تستخدم Firebase:
+    await db.collection("results").add({
+      exam: examName,
+      student: student.name,
+      score: score,
+      date: new Date()
+    });
+
+    // إذا كنت تستخدم localStorage فقط:
+    const localResults = JSON.parse(localStorage.getItem('examResults')) || [];
+    localResults.push({
+      exam: examName,
+      student: student.name,
+      score: score,
+      date: new Date().toISOString()
+    });
+    localStorage.setItem('examResults', JSON.stringify(localResults));
+    
+    alert("تم حفظ النتائج بنجاح!");
+    window.location.href = "result.html";
+  }
+
+   // Next Button
+        nextBtn.addEventListener('click', () => {
+            // Save automatically before proceeding
+            if (totalScore > 0) {
+                let savedResults = JSON.parse(localStorage.getItem('gradingResults')) || [];
+                savedResults.push(currentResults);
+                localStorage.setItem('gradingResults', JSON.stringify(savedResults));
+            }
+            
+            // Proceed to next page
+            window.location.href = "test4.html";
+        });
+
+</script>
+<button onclick="submitExam()">إنهاء الامتحان</button>
+
+<script>
+function submitExam() {
+    const answers = {
+        student_name: "أحمد علي",
+        student_id: "12345",
+        answers: ["A", "C", "B", "D"] // دي الإجابات مثلا
+    };
+
+    fetch("http://127.0.0.1:5000/submit_exam", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(answers)
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+    });
+}
+</script>
+
+</body>
+
+</html>

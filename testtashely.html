@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار الذكاء الرقمي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f8ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .instructions {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-right: 4px solid var(--primary);
+        }
+        
+        .instructions h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .instructions ul {
+            padding: 0 20px;
+            margin-bottom: 15px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+        }
+        
+        .student-info {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .student-info h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .question-wrap {
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: var(--dark);
+        }
+        
+        .options-row {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .option-btn {
+            padding: 14px;
+            background-color: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            text-align: right;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+        
+        .option-btn:hover {
+            background-color: #e9ecef;
+            border-color: #dee2e6;
+        }
+        
+        .option-btn.selected {
+            background-color: #eaf8ff;
+            border-color: var(--success);
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+        }
+        
+        .btn-secondary {
+            background-color: #e9ecef;
+            color: var(--dark);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #dee2e6;
+        }
+        
+        .result-box {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        
+        .result-box.show {
+            display: block;
+        }
+        
+        .result-box h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .score {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .message {
+            font-size: 18px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background-color: #e9ecef;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success), var(--primary));
+            border-radius: 6px;
+            transition: width 0.5s ease-in-out;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            header h1 {
+                font-size: 24px;
+            }
+            
+            .question-text {
+                font-size: 16px;
+            }
+            
+            .option-btn {
+                padding: 12px;
+                font-size: 14px;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>اختبار الذكاء الرقمي</h1>
+            <p>قياس مستوى المهارات الرقمية والتحصيل المعرفي</p>
+        </header>
+        
+        <section class="instructions">
+            <h2><i class="fas fa-info-circle"></i> تعليمات الاختبار</h2>
+            <p>عزيزي التلميذ / عزيزتي التلميذة من فضلك اقرأ التعليمات التالية بعناية قبل أن تبدأ في إجابة الاختبار:</p>
+            <ul>
+                <li>هذا الاختبار وضع لقياس مدى تحصيلك للجانب المعرفي لمهارات الذكاء الرقمي.</li>
+                <li>يتم عرض أسئلة الاختبار في شكل إلكتروني ويتطلب الاختبار أن تجيب على جميع الأسئلة المعروضة.</li>
+                <li>اقرأ كل سؤال من أسئلة الاختبار جيدًا قبل البدء في الإجابة عليه.</li>
+                <li>يتكون الاختبار من أسئلة (الإختيار من متعدد).</li>
+                <li>اختر الإجابة الصحيحة لكل سؤال بالنقر على الخيار الذي تراه صحيحاً.</li>
+            </ul>
+        </section>
+        
+        <section class="student-info">
+            <h2><i class="fas fa-user-graduate"></i> المعلومات الشخصية</h2>
+            <div class="input-group">
+                <label for="studentName">الاسم بالكامل</label>
+                <input type="text" id="studentName" placeholder="أدخل اسمك هنا">
+            </div>
+            <div class="input-group">
+                <label for="studentClass">الصف الدراسي</label>
+                <input type="text" id="studentClass" placeholder="أدخل صفك الدراسي">
+            </div>
+        </section>
+        
+        <div id="questionArea">
+            <!-- سيتم إضافة الأسئلة هنا عبر JavaScript -->
+        </div>
+        
+        <div class="actions">
+            <button id="submitTest" class="btn btn-primary">
+                <i class="fas fa-paper-plane"></i> إنهاء الاختبار
+            </button>
+            <button id="resetTest" class="btn btn-secondary">
+                <i class="fas fa-redo"></i> إعادة الاختبار
+            </button>
+        </div>
+        
+        <div id="resultBox" class="result-box">
+            <h2><i class="fas fa-trophy"></i> نتائج الاختبار</h2>
+            <div class="score" id="resultScore">0 / 24</div>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar" style="width: 0%"></div>
+            </div>
+            <div class="message" id="resultMsg">أجب على كل الأسئلة ثم اضغط إنهاء الاختبار.</div>
+        </div>
+        
+        <footer>
+            <p>© 2023 نظام الاختبارات الرقمية - جميع الحقوق محفوظة</p>
+        </footer>
+    </div>
+
+    <script>
+        // الأسئلة التحصيلية (24 سؤال)
+        const testQuestions = [
+            { 
+                q: 'ما هو تعريف مهارات الذكاء الرقمي الأساسية؟', 
+                options: [
+                    'القدرة على استخدام الأجهزة الإلكترونية للألعاب فقط',
+                    'المهارات التي تمكن الفرد من التعامل بفعالية وأمان مع التكنولوجيا الرقمية',
+                    'القدرة على تصميم مواقع إلكترونية متقدمة',
+                    'المهارات المتعلقة بالرياضيات فقط'
+                ], 
+                correct: 1 
+            },
+            { 
+                q: 'ما هي أهمية الشغف الدراسي في التعلم؟', 
+                options: [
+                    'زيادة الوقت المستغرق في الألعاب الإلكترونية',
+                    'تعزيز الدافعية والمشاركة في العملية التعليمية',
+                    'تقليل الوقت المخصص للدراسة',
+                    'تحسين مهارات البرمجة فقط'
+                ], 
+                correct: 1 
+            },
+            { 
+                q: 'أي من الآتي يمثل أنواع المعلومات الرقمية؟', 
+                options: [
+                    'النصوص، الصور، الفيديوهات',
+                    'الكتب الورقية، الدفاتر، الأقلام',
+                    'الأجهزة الإلكترونية فقط',
+                    'الألعاب التقليدية'
+                ], 
+                correct: 0 
+            },
+            { 
+                q: 'ما هي أدوات التواصل الرقمي الآمن؟', 
+                options: [
+                    'البريد الإلكتروني، الرسائل الفورية الآمنة',
+                    'الألعاب الجماعية عبر الإنترنت',
+                    'مشاركة كلمات المرور مع الأصدقاء',
+                    'استخدام شبكات الواي فاي العامة دون حماية'
+                ], 
+                correct: 0 
+            },
+            { 
+                q: 'ما هي الخطوات الأساسية لحل مشكلة رقمية بسيطة؟', 
+                options: [
+                    'تحديد المشكلة، البحث عن حلول، التجربة والتقييم',
+                    'تجاهل المشكلة واستبدال الجهاز',
+                    'مشاركة المشكلة مع الجميع على الإنترنت',
+                    'إعادة تشغيل الجهاز فقط'
+                ], 
+                correct: 0 
+            },
+            { 
+                q: 'أي من الآتي يمثل إجراءات الأمن الرقمي؟', 
+                options: [
+                    'استخدام كلمات مرور قوية، تفعيل التحقق الثنائي',
+                    'مشاركة كلمات المرور مع الأصدقاء',
+                    'استخدام شبكات عامة دون حماية',
+                    'تنزيل ملفات من مصادر مجهولة'
+                ], 
+                correct: 0 
+            },
+            { 
+                q: 'ما هو مفهوم التفكير الناقد في السياق الرقمي؟', 
+                options: [
+                    'تقييم المعلومات الرقمية للتأكد من مصداقيتها ودقتها',
+                    'تصديق جميع المعلومات المتوفرة على الإنترنت',
+                    'مشاركة المحتوى دون التحقق من مصدره',
+                    'تجنب استخدام الإنترنت نهائيًا'
+                ], 
+                correct: 0 
+            },
+            { 
+                q: 'ما هي خصائص الهوية الرقمية الإيجابية؟', 
+                options: [
+                    'التفاعل المسؤول، احترام الآخرين، نشر محتوى إيجابي',
+                    'مشاركة المعلومات الشخصية بحرية',
+                    'نشر تعليقات مسيئة لجذب الانتباه',
+                    'استخدام حسابات مجهولة فقط'
+                ], 
+                correct: 0 
+            },
+            { 
+                q: 'كيف يمكن استخدام تطبيقات الذكاء الاصطناعي السمعية والبصرية في التعلم؟', 
+                options: [
+                    'لتصميم الألعاب الإلكترونية فقط',
+                    'لتقديم محتوى تعليمي مخصص وتفاعلي يناسب أساليب التعلم',
+                    'لتقليل وقت الدراسة',
+                    'لمشاركة المعلومات الشخصية'
+                ], 
+                correct: 1 
+            },
+            { 
+                q: 'ما العلاقة بين أساليب التعلم المفضلة والشغف الدراسي؟', 
+                options: [
+                    'لا توجد علاقة بينهما',
+                    'أساليب التعلم المفضلة تزيد من الدافعية والشغف بالتعلم',
+                    'أساليب التعلم تقلل من الشغف الدراسي',
+                    'الشغف الدراسي يعتمد على الألعاب فقط'
+                ], 
+                correct: 1 
+            },
+            { 
+                q: 'أي نوع من المعلومات الرقمية مناسب للاستخدام الدراسي؟', 
+                options: [
+                    'المعلومات من مصادر موثوقة ومرتبطة بالمنهج',
+                    'أي معلومات متاحة على الإنترنت',
+                    'مقاطع الفيديو الترفيهية فقط',
+                    'الصور غير المتعلقة بالموضوع'
+                ], 
+                correct: 0 
+            },
+            { 
+                q: 'لماذا يعتبر التواصل الرقمي الآمن والأخلاقي مهمًا؟', 
+                options: [
+                    'لأنه يقلل من سرعة الإنترنت',
+                    'لحماية الخصوصية وتعزيز التفاعل الإيجابي',
+                    'لزيادة عدد الأصدقاء عبر الإنترنت',
+                    'لمشاركة المعلومات الشخصية بحرية'
+                ], 
+                correct: 1 
+            },
+            { 
+                q: 'كيف يمكن تحليل خطوات حل مشكلة رقمية باستخدام أدوات الذكاء الاصطناعي؟', 
+                options: [
+                    'باستخدام أدوات تشخيص ذكية لتحديد المشكلة واقتراح الحلول',
+                    'بتجاهل المشكلة واستبدال الجهاز',
+                    'بمشاركة المشكلة على وسائل التواصل',
+                    'بإعادة تشغيل الجهاز فقط'
+                ], 
+                correct: 0 
+            },
+            { 
+                q: 'ما هي إجراءات الحفاظ على الأمن الرقمي؟', 
+                options: [
+                    'استخدام كلمات مرور قوية وتجنب فتح روابط مشبوهة',
+                    'مشاركة كلمات المرور مع الأصدقاء',
+                    'تنزيل ملفات من مصادر غير موثوقة',
+                    'استخدام شبكات عامة دون حماية'
+                ], 
+                correct: 0 
+            },
+            { 
+                q: 'لماذا يعتبر التفكير الناقد مهمًا في تقييم المحتوى الرقمي؟', 
+                options: [
+                    'لتجنب تصديق المعلومات المضللة والتحقق من المصادر',
+                    'لتسريع عملية البحث على الإنترنت',
+                    'لنشر المحتوى دون التحقق منه',
+                    'لتقليل استخدام الإنترنت'
+                ], 
+                correct: 0 
+            },
+            { 
+                q: 'كيف يمكن بناء هوية رقمية إيجابية؟', 
+                options: [
+                    'من خلال التفاعل المسؤول ونشر محتوى يعكس قيمًا إيجابية',
+                    'من خلال مشاركة المعلومات الشخصية بحرية',
+                    'من خلال استخدام حسابات مجهولة',
+                    'من خلال نشر تعليقات مسيئة'
+                ], 
+                correct: 0 
+            },
+            { 
+                q: 'أي من الآتي يمثل استخدام تطبيقات الذكاء الاصطناعي السمعية والبصرية لإنجاز مهمة دراسية؟', 
+                options: [
+                    'إنشاء عرض تقديمي باستخدام أدوات ذكية مثل Canva أو PowerPoint',
+                    'مشاركة صور شخصية على وسائل التواصل',
+                    'تنزيل ألعاب إلكترونية',
+                    'تجاهل الأدوات الذكية والاعتماد على الكتب فقط'
+                ], 
+                correct: 0 
+            },
+            { 
+                q: 'كيف يمكن تطبيق أساليب التعلم المفضلة لتعزيز الشغف الدراسي؟', 
+                options: [
+                    'استخدام مقاطع فيديو تعليمية للمتعلمين البصريين أو بودكاست للمتعلمين السمعيين',
+                    'قضاء وقت طويل في الألعاب الإلكترونية',
+                    'تجنب استخدام التكنولوجيا في التعلم',
+                    'نسخ المحتوى من الإنترنت دون فهم'
+                ], 
+                correct: 0 
+            },
+            { 
+                q: 'ما الطريقة الصحيحة لإدارة المعلومات الرقمية بشكل آمن ومنظم؟', 
+                options: [
+                    'تصنيف الملفات في مجلدات واستخدام كلمات مرور لحمايتها',
+                    'حفظ جميع الملفات على سطح المكتب دون تنظيم',
+                    'مشاركة الملفات مع الجميع',
+                    'حذف الملفات بعد الاستخدام مباشرة'
+                ], 
+                correct: 0 
+            },
+            { 
+                q: 'كيف تمارس التواصل الرقمي باستخدام أدوات آمنة ومناسبة؟', 
+                options: [
+                    'إرسال رسائل بريد إلكتروني باستخدام عناوين موثوقة وتجنب المرفقات المجهولة',
+                    'مشاركة معلومات شخصية عبر الرسائل العامة',
+                    'استخدام شبكات واي فاي عامة دون حماية',
+                    'إرسال رسائل مجهولة المصدر'
+                ], 
+                correct: 0 
+            },
+            { 
+                q: 'كيف يمكن حل مشكلة رقمية باستخدام مهارات التفكير الناقد؟', 
+                options: [
+                    'تحليل المشكلة، التحقق من المصادر، واختبار الحلول',
+                    'تجاهل المشكلة وطلب جهاز جديد',
+                    'مشاركة المشكلة على وسائل التواصل',
+                    'إعادة تشغيل الجهاز دون تحليل'
+                ], 
+                correct: 0 
+            },
+            { 
+                q: 'ما هي الطريقة الصحيحة لتطبيق إجراءات الأمن الرقمي في الأنشطة اليومية؟', 
+                options: [
+                    'تفعيل المصادقة الثنائية وتحديث كلمات المرور بانتظام',
+                    'مشاركة كلمات المرور مع الأصدقاء',
+                    'فتح روابط مجهولة المصدر',
+                    'استخدام كلمة مرور واحدة لجميع الحسابات'
+                ], 
+                correct: 0 
+            },
+            { 
+                q: 'كيف يمكن تقييم محتوى رقمي باستخدام التفكير الناقد؟', 
+                options: [
+                    'التحقق من مصداقية المصدر ودقة المعلومات',
+                    'تصديق المحتوى بناءً على عدد المشاهدات',
+                    'مشاركة المحتوى دون التحقق منه',
+                    'تجنب قراءة المحتوى الرقمي'
+                ], 
+                correct: 0 
+            },
+            { 
+                q: 'ما الطريقة الصحيحة لبناء هوية رقمية إيجابية من خلال التفاعل الرقمي المسؤول؟', 
+                options: [
+                    'نشر محتوى يعكس القيم الإيجابية واحترام الآخرين',
+                    'استخدام حسابات مجهولة للتعليق',
+                    'نشر تعليقات مسيئة لجذب الانتباه',
+                    'مشاركة المعلومات الشخصية بحرية'
+                ], 
+                correct: 0 
+            }
+        ];
+
+        // توليد واجهة الأسئلة
+        const questionArea = document.getElementById('questionArea');
+        testQuestions.forEach((tq, idx) => {
+            const qwrap = document.createElement('div');
+            qwrap.className = 'question-wrap';
+            qwrap.innerHTML = `
+                <div class="question-text">${idx+1}. ${tq.q}</div>
+                <div class="options-row" id="options-${idx}"></div>
+            `;
+            
+            const opts = qwrap.querySelector(`#options-${idx}`);
+            tq.options.forEach((op, oi) => {
+                const b = document.createElement('button');
+                b.className = 'option-btn';
+                b.type = 'button';
+                b.innerText = op;
+                b.dataset.q = idx;
+                b.dataset.idx = oi;
+                b.addEventListener('click', () => {
+                    // إلغاء تحديد جميع الخيارات في هذه المجموعة
+                    opts.querySelectorAll('.option-btn').forEach(x => {
+                        x.classList.remove('selected');
+                    });
+                    
+                    // تحديد الخيار الحالي
+                    b.classList.add('selected');
+                    
+                    // الانتقال التلقائي للسؤال التالي
+                    setTimeout(() => {
+                        const nextQuestion = qwrap.nextElementSibling;
+                        if(nextQuestion) {
+                            nextQuestion.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center'
+                            });
+                        }
+                    }, 300);
+                });
+                opts.appendChild(b);
+            });
+            questionArea.appendChild(qwrap);
+        });
+
+        // زر إنهاء الاختبار
+        document.getElementById('submitTest').addEventListener('click', () => {
+            const studentName = document.getElementById('studentName').value;
+            if (!studentName) {
+                alert('من فضلك أدخل اسمك قبل إنهاء الاختبار');
+                return;
+            }
+            
+            let correctCount = 0;
+            const results = [];
+            
+            testQuestions.forEach((q, qi) => {
+                const row = document.getElementById(`options-${qi}`);
+                const selected = row.querySelector('.option-btn.selected');
+                let isCorrect = false;
+                
+                if(selected) {
+                    const selectedIdx = parseInt(selected.dataset.idx);
+                    isCorrect = (selectedIdx === q.correct);
+                    if(isCorrect) correctCount++;
+                }
+                
+                results.push({
+                    question: q.q,
+                    selected: selected ? selected.innerText : 'لم يتم الإجابة',
+                    correct: q.options[q.correct],
+                    isCorrect: isCorrect
+                });
+            });
+            
+            // حساب النسبة المئوية
+            const percentage = Math.round((correctCount / testQuestions.length) * 100);
+            
+            // عرض النتيجة
+            document.getElementById('resultBox').classList.add('show');
+            document.getElementById('resultScore').textContent = `${correctCount} / ${testQuestions.length}`;
+            document.getElementById('progressBar').style.width = `${percentage}%`;
+            
+            let message = '';
+            if(percentage >= 80) {
+                message = 'ممتاز! لقد أظهرت فهمًا رائعًا للمهارات الرقمية.';
+            } else if(percentage >= 60) {
+                message = 'جيد! لديك فهم أساسي جيد، يمكنك مراجعة بعض النقاط لتحسين مستواك.';
+            } else {
+                message = 'حاول مرة أخرى! ننصحك بمراجعة الفيديوهات التعليمية ثم إعادة الاختبار.';
+            }
+            
+            document.getElementById('resultMsg').innerHTML = `
+                ${message}<br>
+                نسبتك التحصيلية: <strong>${percentage}%</strong>
+            `;
+            
+            // حفظ النتيجة محلياً
+            localStorage.setItem('lastTestScore', JSON.stringify({
+                studentName: studentName,
+                score: correctCount,
+                total: testQuestions.length,
+                percent: percentage,
+                date: new Date().toLocaleString('ar-EG'),
+                results: results
+            }));
+            
+            // حفظ النتيجة في قاعدة البيانات (محاكاة)
+            const testData = {
+                student_name: studentName,
+                student_class: document.getElementById('studentClass').value || 'غير محدد',
+                test_type: 'اختبار الذكاء الرقمي',
+                total_score: correctCount,
+                percentage: percentage,
+                grade: percentage >= 80 ? 'ممتاز (A)' : percentage >= 60 ? 'جيد (C)' : 'ضعيف (F)'
+            };
+            
+            // هنا سيتم إرسال البيانات إلى الخادم
+            console.log('بيانات الاختبار الجاهزة للإرسال:', testData);
+            
+            // محاكاة إرسال البيانات
+            simulateDatabaseSave(testData);
+            
+            // التمرير إلى النتيجة
+            document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // محاكاة حفظ البيانات في قاعدة البيانات
+        function simulateDatabaseSave(testData) {
+            // هذه مجرد محاكاة - في التطبيق الحقيقي سيتم استخدام fetch أو axios
+            console.log('جاري حفظ النتيجة في قاعدة البيانات...', testData);
+            
+            // عرض رسالة نجاح
+            setTimeout(() => {
+                const successMsg = document.createElement('div');
+                successMsg.innerHTML = `
+                    <div style="position: fixed; top: 20px; right: 20px; background: #4caf50; color: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 1000;">
+                        <i class="fas fa-check-circle"></i> تم حفظ النتيجة في قاعدة البيانات بنجاح
+                    </div>
+                `;
+                document.body.appendChild(successMsg);
+                
+                // إزالة الرسالة بعد 3 ثوان
+                setTimeout(() => {
+                    successMsg.remove();
+                }, 3000);
+            }, 1000);
+        }
+
+        // زر إعادة الاختبار
+        document.getElementById('resetTest').addEventListener('click', () => {
+            if(confirm('هل أنت متأكد أنك تريد إعادة الاختبار؟ سيتم حذف جميع إجاباتك الحالية.')) {
+                document.querySelectorAll('.option-btn.selected').forEach(b => {
+                    b.classList.remove('selected');
+                });
+                
+                document.getElementById('resultBox').classList.remove('show');
+                document.getElementById('resultScore').textContent = `0 / ${testQuestions.length}`;
+                document.getElementById('progressBar').style.width = '0%';
+                document.getElementById('resultMsg').textContent = 'أجب على كل الأسئلة ثم اضغط إنهاء الاختبار.';
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>
+<script>
+// Helper to continue chained flow via ?next=
+(function(){
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const next = params.get('next');
+    // Create floating next button if next param exists
+    if (next) {
+      const btn = document.createElement('a');
+      btn.textContent = 'التالي →';
+      btn.href = next;
+      btn.style.cssText = 'position:fixed;bottom:20px;left:20px;background:#FF7B25;color:#fff;padding:12px 16px;border-radius:10px;font-weight:800;z-index:1000;text-decoration:none;box-shadow:0 6px 16px rgba(0,0,0,.2)';
+      document.body.appendChild(btn);
+    }
+  } catch(e) {}
+})();
+</script>
